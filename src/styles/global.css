@@ -1,0 +1,252 @@
+/* =====================================================================
+   maetdori 기술블로그 — 포트폴리오(portfolio/src/styles/global.css)와
+   동일한 디자인 토큰을 공유한다. 토큰/배경/네비/토글은 포트폴리오에서
+   그대로 가져오고, 블로그 전용(글 목록·본문 prose)만 아래에 덧붙였다.
+   ===================================================================== */
+
+/* ─────────────  Light theme tokens  ───────────── */
+:root {
+  --bg: #fdf9f3;
+  --surface: #ffffff;
+  --surface-2: #f6efe4;
+  --text: #271f16;
+  --muted: #6f6353;
+  --faint: #9d9080;
+  --border: #ece2d4;
+  --accent: #c4681a;
+  --accent-strong: #9c4f12;
+  --accent-soft: #fbecd6;
+  --shadow: 0 1px 2px rgba(60, 40, 20, 0.05), 0 4px 16px rgba(60, 40, 20, 0.07);
+  --radius: 14px;
+  --maxw: 860px;
+  --prose: 720px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Hiragino Kaku Gothic ProN", "Noto Sans JP", Roboto, Arial, sans-serif;
+  --mono: "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+/* ─────────────  Dark theme tokens (IntelliJ Darcula 계열)  ───────────── */
+:root[data-theme="dark"] {
+  --bg: #2b2b2b;
+  --surface: #313335;
+  --surface-2: #3c3f41;
+  --text: #b6bcc6;
+  --muted: #868a91;
+  --faint: #6a6d72;
+  --border: #4a4c4e;
+  --accent: #cc7832;
+  --accent-strong: #dd9257;
+  --accent-soft: #3a2a18;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+/* ─────────────  Reset-ish  ───────────── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  background:
+    radial-gradient(1100px 560px at 50% -8%, rgba(204, 120, 50, 0.12), transparent 62%),
+    radial-gradient(920px 500px at 100% 6%, rgba(204, 120, 50, 0.07), transparent 55%),
+    radial-gradient(820px 520px at 0% 22%, rgba(160, 90, 30, 0.04), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(120, 90, 50, 0.09) 1.1px, transparent 1.5px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0.35) 88%, transparent);
+  mask-image: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0.35) 88%, transparent);
+}
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(1100px 560px at 50% -8%, rgba(204, 120, 50, 0.05), transparent 62%),
+    var(--bg);
+}
+:root[data-theme="dark"] body::before {
+  background-image: radial-gradient(rgba(180, 180, 190, 0.035) 1.1px, transparent 1.5px);
+}
+h1, h2, h3, p { margin: 0; }
+a { color: var(--accent-strong); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; }
+
+/* ─────────────  Layout  ───────────── */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+.section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+
+/* ─────────────  Nav (sticky)  ───────────── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(253, 249, 243, 0.82);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+:root[data-theme="dark"] .nav { background: rgba(43, 43, 43, 0.82); }
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: 12px 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.nav-brand { font-weight: 800; letter-spacing: -0.01em; color: var(--text); margin-right: auto; }
+.nav-brand:hover { text-decoration: none; }
+.nav-brand .hl { color: var(--accent); }
+.nav-links { display: flex; gap: 20px; font-size: 0.88rem; }
+.nav-links a { color: var(--muted); transition: color 0.15s; }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-links a.active { color: var(--accent); font-weight: 700; }
+
+/* ─────────────  Floating theme toggle  ───────────── */
+.float-controls { position: fixed; bottom: 20px; right: 20px; z-index: 60; display: flex; gap: 10px; }
+.theme-toggle {
+  width: 40px; height: 34px; display: grid; place-items: center;
+  border: 1px solid var(--border); border-radius: 999px;
+  color: var(--muted); cursor: pointer; font-size: 1.02rem; line-height: 1;
+  background: rgba(246, 239, 228, 0.9);
+  backdrop-filter: saturate(180%) blur(10px);
+  box-shadow: 0 2px 6px rgba(60, 40, 20, 0.10), 0 8px 24px rgba(60, 40, 20, 0.12);
+  transition: color 0.15s;
+}
+:root[data-theme="dark"] .theme-toggle {
+  background: rgba(60, 63, 65, 0.85);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.theme-toggle:hover { color: var(--text); }
+.theme-icon-dark { display: none; }
+:root[data-theme="dark"] .theme-icon-light { display: none; }
+:root[data-theme="dark"] .theme-icon-dark { display: inline; }
+
+/* ─────────────  Blog masthead (index hero)  ───────────── */
+.mast { padding: 64px 0 8px; }
+.mast .eyebrow { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+.mast h1 { font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 14px 0 0; }
+.mast h1 .hl { color: var(--accent); }
+.mast .tagline { margin-top: 18px; font-size: 1.1rem; color: var(--muted); max-width: 40rem; }
+.mast .stats { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 26px; font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+.mast .stats b { font-family: var(--mono); color: var(--accent-strong); font-weight: 800; }
+
+/* ─────────────  Writing cards (포트폴리오와 동일)  ───────────── */
+.writing-section { padding: 44px 0 60px; }
+.writing-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .writing-grid { grid-template-columns: repeat(3, 1fr); } }
+.writing-card {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  color: var(--text); transition: transform 0.12s, border-color 0.12s;
+}
+.writing-card:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--accent); }
+.writing-card-thumb {
+  display: block; height: 150px; padding: 10px;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+  border-bottom: 1px solid var(--border);
+}
+.writing-card-thumb img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
+.writing-card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
+.writing-card-date { font-family: var(--mono); font-size: 0.76rem; font-weight: 700; color: var(--accent); }
+.writing-card-title { font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
+.writing-card-tags { margin-top: 4px; display: flex; gap: 6px; flex-wrap: wrap; }
+.wt { font-size: 0.68rem; font-family: var(--mono); color: var(--muted); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; }
+
+/* ─────────────  Article header  ───────────── */
+.art-hero { max-width: var(--prose); margin: 0 auto; padding: 56px 24px 0; }
+.art-back { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.art-back:hover { color: var(--accent); text-decoration: none; }
+.art-hero .eyebrow { display: block; margin-top: 26px; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; text-transform: lowercase; }
+.art-hero h1 { font-size: clamp(1.8rem, 4.4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; margin: 12px 0 0; }
+.art-hero .byline { margin: 20px 0 0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 0.84rem; color: var(--muted); font-family: var(--mono); }
+.art-hero .avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #241a0e; display: grid; place-items: center; font-weight: 800; font-size: 0.8rem; font-family: var(--font); }
+.art-hero .tags { margin: 18px 0 0; display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ─────────────  Prose (article body)  ───────────── */
+.prose { max-width: var(--prose); margin: 0 auto; padding: 8px 24px 80px; }
+.prose > * + * { margin-top: 22px; }
+.prose p { font-size: 1.04rem; }
+.prose h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-top: 52px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.prose h3 { font-size: 1.18rem; font-weight: 700; margin-top: 38px; }
+.prose strong { font-weight: 700; color: var(--text); }
+.prose a { color: var(--accent-strong); background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; }
+.prose a:hover { text-decoration: none; color: var(--accent); }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li { margin: 8px 0; }
+.prose li::marker { color: var(--accent); }
+.prose img { display: block; margin: 6px auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+.prose figure { margin: 30px 0; }
+.prose figure img { margin-bottom: 8px; }
+.prose figcaption { font-size: 0.82rem; color: var(--faint); text-align: center; font-family: var(--mono); }
+
+/* highlight — 시스템 accent-soft (노션의 yellow_bg 대체) */
+.prose mark, .prose .hl { background: var(--accent-soft); color: var(--accent-strong); padding: 0 4px; border-radius: 4px; font-weight: 600; }
+
+/* code */
+.prose :not(pre) > code {
+  font-family: var(--mono); font-size: 0.88em;
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 5px; padding: 1px 5px;
+}
+.prose pre {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px 18px; overflow-x: auto;
+  font-family: var(--mono); font-size: 0.86rem; line-height: 1.7;
+}
+.prose pre code { font-family: var(--mono); background: none; border: 0; padding: 0; }
+
+/* callout */
+.callout {
+  display: grid; grid-template-columns: 24px 1fr; gap: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); border-radius: var(--radius);
+  padding: 16px 18px; box-shadow: var(--shadow);
+}
+.callout .ic { font-size: 1.1rem; line-height: 1.5; }
+.callout > div > * + * { margin-top: 10px; }
+.callout p { margin: 0; font-size: 0.96rem; color: var(--muted); }
+.callout p strong { color: var(--text); }
+.callout a { color: var(--accent-strong); }
+
+/* blockquote */
+.prose blockquote { padding: 4px 0 4px 20px; border-left: 2px solid var(--accent); color: var(--muted); font-style: italic; }
+.prose blockquote cite { display: block; margin-top: 8px; font-style: normal; font-size: 0.8rem; color: var(--faint); font-family: var(--mono); }
+
+/* table */
+.prose .table-wrap { overflow-x: auto; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.prose th, .prose td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+.prose th { background: var(--surface-2); font-weight: 700; }
+.prose td { background: var(--surface); }
+
+/* two-column blocks (노션 columns 재현) */
+.cols { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 640px) { .cols.two { grid-template-columns: 1fr 1fr; } }
+
+/* horizontal rule */
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 40px 0; }
+
+/* post nav (prev/next) + footer */
+.post-foot { max-width: var(--prose); margin: 0 auto; padding: 0 24px 40px; }
+.post-foot .back-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.86rem; color: var(--muted); }
+.post-foot .back-link:hover { color: var(--accent); text-decoration: none; }
+
+.footer { padding: 40px 0 60px; color: var(--faint); font-size: 0.86rem; text-align: center; border-top: 1px solid var(--border); }
+.footer a { color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

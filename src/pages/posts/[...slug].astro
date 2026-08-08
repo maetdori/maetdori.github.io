@@ -1,0 +1,61 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = { post: CollectionEntry<'posts'> };
+const { post } = Astro.props;
+const { Content } = await post.render();
+const d = post.data;
+---
+
+<Base title={`${d.title} — maetdori.log`} description={d.description} article>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/">maetdori<span class="hl">.log</span></a>
+      <div class="nav-links">
+        <a href="/">글</a>
+        <a href="https://portfolio.minijihob.workers.dev" target="_blank" rel="noopener">Portfolio ↗</a>
+        <a href="https://github.com/maetdori" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </nav>
+
+  <article>
+    <header class="art-hero">
+      <a class="art-back" href="/">← 글 목록</a>
+      <span class="eyebrow">{d.category}</span>
+      <h1>{d.title}</h1>
+      <div class="byline">
+        <span class="avatar">해</span>
+        <span>이해인</span><span>·</span>
+        <span>{d.date}</span>
+        {d.readingTime && (<><span>·</span><span>{d.readingTime}</span></>)}
+      </div>
+      <div class="tags">
+        {d.tags.map((t) => <span class="wt">{t}</span>)}
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+
+  <div class="post-foot">
+    <a class="back-link" href="/">← 다른 글 보러 가기</a>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© {new Date().getFullYear()} 이해인 (maetdori) · Built with Astro</p>
+    </div>
+  </footer>
+</Base>

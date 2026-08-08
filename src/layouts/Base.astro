@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** 글 페이지에서 og:type=article 지정용 */
+  article?: boolean;
+}
+const { title, description = '', article = false } = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://maetdori.github.io');
+const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL('og.png', siteUrl).href;
+const desc = description.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+---
+
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" href={new URL('favicon.png', siteUrl).href} />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:site_name" content="maetdori.log" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="ko_KR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- 페인트 전 테마 적용(FOUC 방지) — 포트폴리오와 동일 방식 -->
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'light' && t !== 'dark') {
+            t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="float-controls">
+      <button id="theme-btn" class="theme-toggle" type="button" aria-label="Toggle theme">
+        <span class="theme-icon-light" aria-hidden="true">☀</span>
+        <span class="theme-icon-dark" aria-hidden="true">☾</span>
+      </button>
+    </div>
+
+    <slot />
+
+    <script>
+      const themeBtn = document.getElementById('theme-btn');
+      themeBtn?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    </script>
+  </body>
+</html>

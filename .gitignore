@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.astro/
+.DS_Store
+*.log
+
+# 컨셉 불일치로 제외한 원본 이미지(검토용, 비공개)
+_excluded-images/
