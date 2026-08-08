@@ -10,41 +10,38 @@ readingTime: 8 min read
 ---
 
 <figure class="figmock">
-  <svg class="mock" viewBox="0 0 720 280" role="img" aria-label="페이징과 무한 스크롤 비교">
+  <svg class="mock" viewBox="0 0 720 246" role="img" aria-label="페이징과 무한 스크롤 비교">
     <!-- 왼쪽: 페이징 -->
-    <g transform="translate(8 18)">
-      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
-      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
-      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
-      <rect class="field-2" x="118" y="8" width="150" height="14" rx="7"/>
-      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
-      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
-      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/><rect class="line-soft" x="84" y="118" width="80" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="136" x2="256" y2="136"/>
-      <rect class="line" x="84" y="148" width="150" height="6" rx="3"/>
-      <g transform="translate(170 200)">
+    <g transform="translate(8 8)">
+      <rect class="win" x="0" y="0" width="340" height="196" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="28" rx="10"/>
+      <circle class="dot" cx="18" cy="14" r="3.5"/><circle class="dot" cx="30" cy="14" r="3.5"/><circle class="dot" cx="42" cy="14" r="3.5"/>
+      <rect class="field" x="66" y="44" width="208" height="104" rx="6"/>
+      <rect class="line" x="82" y="60" width="150" height="6" rx="3"/><rect class="line-soft" x="82" y="72" width="90" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="90" x2="258" y2="90"/>
+      <rect class="line" x="82" y="102" width="140" height="6" rx="3"/><rect class="line-soft" x="82" y="114" width="78" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="132" x2="258" y2="132"/>
+      <g transform="translate(170 170)">
         <polyline class="stroke-accent" points="-58,-6 -65,0 -58,6"/>
         <circle class="pg" cx="-38" cy="0" r="4"/><circle class="pg" cx="-19" cy="0" r="4"/><circle class="pg" cx="0" cy="0" r="4"/><circle class="pg" cx="19" cy="0" r="4"/><circle class="pg" cx="38" cy="0" r="4"/>
         <polyline class="stroke-accent" points="58,-6 65,0 58,6"/>
       </g>
-      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">페이징</text>
     </g>
     <!-- 오른쪽: 무한 스크롤 -->
-    <g transform="translate(372 18)">
-      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
-      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
-      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
-      <rect class="field-2" x="118" y="8" width="150" height="14" rx="7"/>
-      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
-      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
-      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/><rect class="line-soft" x="84" y="118" width="80" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="136" x2="256" y2="136"/>
-      <rect class="line-soft" x="84" y="148" width="110" height="6" rx="3"/>
-      <circle class="stroke-accent" cx="170" cy="200" r="9" stroke-dasharray="30 16"/>
-      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">무한 스크롤</text>
+    <g transform="translate(372 8)">
+      <rect class="win" x="0" y="0" width="340" height="196" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="28" rx="10"/>
+      <circle class="dot" cx="18" cy="14" r="3.5"/><circle class="dot" cx="30" cy="14" r="3.5"/><circle class="dot" cx="42" cy="14" r="3.5"/>
+      <rect class="field" x="66" y="44" width="208" height="104" rx="6"/>
+      <rect class="line" x="82" y="60" width="150" height="6" rx="3"/><rect class="line-soft" x="82" y="72" width="90" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="90" x2="258" y2="90"/>
+      <rect class="line" x="82" y="102" width="140" height="6" rx="3"/><rect class="line-soft" x="82" y="114" width="78" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="132" x2="258" y2="132"/>
+      <circle class="stroke-accent" cx="170" cy="168" r="9" stroke-dasharray="30 16"/>
     </g>
+    <!-- 라벨: 창 바깥(카드 위) -->
+    <text class="label" x="178" y="230" font-size="14" text-anchor="middle">페이징</text>
+    <text class="label" x="542" y="230" font-size="14" text-anchor="middle">무한 스크롤</text>
   </svg>
 </figure>
 
@@ -165,39 +162,38 @@ readingTime: 8 min read
 ## 기술의 관점에서
 
 <figure class="figmock">
-  <svg class="mock" viewBox="0 0 720 280" role="img" aria-label="오프셋 페이징과 커서 페이징 비교">
+  <svg class="mock" viewBox="0 0 720 262" role="img" aria-label="오프셋 페이징과 커서 페이징 비교">
     <!-- 오프셋: 페이지 번호로 접근 -->
-    <g transform="translate(8 18)">
-      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
-      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
-      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
-      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
-      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
-      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/><rect class="line-soft" x="84" y="118" width="80" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="136" x2="256" y2="136"/>
-      <rect class="line" x="84" y="148" width="150" height="6" rx="3"/>
-      <g transform="translate(170 200)">
+    <g transform="translate(8 8)">
+      <rect class="win" x="0" y="0" width="340" height="196" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="28" rx="10"/>
+      <circle class="dot" cx="18" cy="14" r="3.5"/><circle class="dot" cx="30" cy="14" r="3.5"/><circle class="dot" cx="42" cy="14" r="3.5"/>
+      <rect class="field" x="66" y="44" width="208" height="104" rx="6"/>
+      <rect class="line" x="82" y="60" width="150" height="6" rx="3"/><rect class="line-soft" x="82" y="72" width="90" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="90" x2="258" y2="90"/>
+      <rect class="line" x="82" y="102" width="140" height="6" rx="3"/><rect class="line-soft" x="82" y="114" width="78" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="132" x2="258" y2="132"/>
+      <g transform="translate(170 170)">
         <polyline class="stroke-accent" points="-58,-6 -65,0 -58,6"/>
         <circle class="pg" cx="-38" cy="0" r="4"/><circle class="pg" cx="-19" cy="0" r="4"/><circle class="pg" cx="0" cy="0" r="4"/><circle class="pg" cx="19" cy="0" r="4"/><circle class="pg" cx="38" cy="0" r="4"/>
         <polyline class="stroke-accent" points="58,-6 65,0 58,6"/>
       </g>
-      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">오프셋 페이징</text>
     </g>
     <!-- 커서: 마지막 항목 다음부터 -->
-    <g transform="translate(372 18)">
-      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
-      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
-      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
-      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
-      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
-      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
-      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/>
-      <rect class="accentbox" x="78" y="130" width="184" height="26" rx="5"/>
-      <rect class="fill-accent" x="90" y="141" width="120" height="5" rx="2.5"/>
-      <text class="label-accent" x="170" y="188" font-size="11" text-anchor="middle">▲ 마지막 항목 = cursor</text>
-      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">커서 페이징</text>
+    <g transform="translate(372 8)">
+      <rect class="win" x="0" y="0" width="340" height="196" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="28" rx="10"/>
+      <circle class="dot" cx="18" cy="14" r="3.5"/><circle class="dot" cx="30" cy="14" r="3.5"/><circle class="dot" cx="42" cy="14" r="3.5"/>
+      <rect class="field" x="66" y="44" width="208" height="104" rx="6"/>
+      <rect class="line" x="82" y="60" width="150" height="6" rx="3"/><rect class="line-soft" x="82" y="72" width="90" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="90" x2="258" y2="90"/>
+      <rect class="accentbox" x="74" y="100" width="192" height="28" rx="6"/>
+      <rect class="fill-accent" x="86" y="111" width="120" height="6" rx="3"/>
+      <text class="label-accent" x="240" y="120" font-size="11" text-anchor="end">cursor</text>
     </g>
+    <!-- 라벨: 창 바깥(카드 위) -->
+    <text class="label" x="178" y="230" font-size="14" text-anchor="middle">오프셋 페이징</text>
+    <text class="label" x="542" y="230" font-size="14" text-anchor="middle">커서 페이징</text>
   </svg>
   <figcaption>오프셋 페이징 &nbsp;·&nbsp; 커서 페이징</figcaption>
 </figure>

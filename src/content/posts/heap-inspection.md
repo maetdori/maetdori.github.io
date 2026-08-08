@@ -13,8 +13,34 @@ Heap Inspection은 보통의 개발자들이 잘 신경 쓰지 않는 보안 취
 
 ## So what is Heap Inspection?
 
-<figure>
-  <img src="/posts/heap-inspection/img-01.png" alt="Heap Inspection 개념 일러스트" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 210" role="img" aria-label="메모리 덤프에서 민감정보를 읽어내는 Heap Inspection">
+    <rect class="field" x="50" y="34" width="380" height="150" rx="12"/>
+    <text class="label" x="70" y="58" font-size="13">MEMORY DUMP</text>
+    <g>
+      <rect class="fill-surf2" x="70" y="74" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="152" y="74" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="234" y="74" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="316" y="74" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="70" y="106" width="72" height="24" rx="5"/>
+      <rect class="accentbox" x="152" y="106" width="98" height="24" rx="5"/>
+      <text class="label-accent" x="201" y="123" font-size="12" text-anchor="middle">p4$$w0rd</text>
+      <rect class="fill-surf2" x="260" y="106" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="70" y="138" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="152" y="138" width="72" height="24" rx="5"/>
+      <rect class="fill-surf2" x="234" y="138" width="72" height="24" rx="5"/>
+    </g>
+    <!-- 돋보기 -->
+    <circle class="stroke-accent" cx="201" cy="118" r="34" stroke-width="3"/>
+    <line class="stroke-accent" x1="226" y1="143" x2="250" y2="167" stroke-width="4"/>
+    <!-- 자물쇠 -->
+    <g transform="translate(470 96)">
+      <rect class="accentbox" x="0" y="20" width="60" height="46" rx="8"/>
+      <path class="stroke-accent" d="M12 20 v-10 a18 18 0 0 1 36 0 v10" stroke-width="4"/>
+      <circle class="fill-accent" cx="30" cy="40" r="6"/>
+      <rect class="fill-accent" x="27" y="44" width="6" height="14" rx="3"/>
+    </g>
+  </svg>
 </figure>
 
 *Heap Inspection*이란, 메모리 덤프(Memory dump)와 같은 방법을 통해 메모리에 저장된 데이터를 읽는 정보 탈취 공격을 말한다. 메모리에 직접 접근함으로써 패스워드와 같은 민감한 정보들을 빼갈 수 있게 된다.
@@ -34,20 +60,40 @@ Heap Inspection은 보통의 개발자들이 잘 신경 쓰지 않는 보안 취
 
 기본적으로 프로그램은 메모리를 할당받고, 사용하고, 해제하는 흐름을 가진다. 이러한 흐름을 바탕으로 Java의 String과 char[]가 각각 어떻게 메모리에 할당되고 해제되는지 알아보자.
 
-<figure>
-  <img src="/posts/heap-inspection/img-02.png" alt="메모리 생애주기 — 할당·사용·해제" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 110" role="img" aria-label="메모리 생애주기: 할당 사용 해제">
+    <rect class="accentbox" x="40" y="34" width="140" height="46" rx="10"/>
+    <text class="label-accent" x="110" y="55" font-size="14" text-anchor="middle" font-weight="700">Allocate</text>
+    <text class="label" x="110" y="72" font-size="12" text-anchor="middle">할당</text>
+    <g transform="translate(210 57)"><line class="stroke-accent" x1="-18" y1="0" x2="18" y2="0"/><polyline class="stroke-accent" points="10,-6 18,0 10,6"/></g>
+    <rect class="surfbox" x="230" y="34" width="140" height="46" rx="10"/>
+    <text class="ink" x="300" y="55" font-size="14" text-anchor="middle" font-weight="700">Use</text>
+    <text class="label" x="300" y="72" font-size="12" text-anchor="middle">사용</text>
+    <g transform="translate(400 57)"><line class="stroke-accent" x1="-18" y1="0" x2="18" y2="0"/><polyline class="stroke-accent" points="10,-6 18,0 10,6"/></g>
+    <rect class="surfbox" x="420" y="34" width="140" height="46" rx="10"/>
+    <text class="ink" x="490" y="55" font-size="14" text-anchor="middle" font-weight="700">Deallocate</text>
+    <text class="label" x="490" y="72" font-size="12" text-anchor="middle">해제</text>
+  </svg>
 </figure>
 
 ## Memory Deallocation of String
 
-<figure>
-  <img src="/posts/heap-inspection/img-03.png" alt='String password = "helloWorld";' />
-</figure>
+<pre><span class="kw">String</span> password = <span class="st">"helloWorld"</span>;</pre>
 
 쉽게 생각할 수 있는 민감 정보인 **패스워드**를 이와 같이 String 객체에 저장해 사용한다고 생각해보자.
 
-<figure>
-  <img src="/posts/heap-inspection/img-04.png" alt="String 객체의 메모리 할당" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 200" role="img" aria-label="String 객체의 메모리 할당">
+    <text class="label" x="40" y="30" font-size="13">Stack 영역</text>
+    <rect class="field" x="30" y="42" width="230" height="140" rx="10"/>
+    <rect class="surfbox" x="70" y="96" width="150" height="44" rx="8"/>
+    <text class="ink" x="145" y="123" font-size="14" text-anchor="middle">password</text>
+    <text class="label" x="360" y="30" font-size="13">Heap 영역</text>
+    <rect class="field" x="340" y="42" width="230" height="140" rx="10"/>
+    <rect class="accentbox" x="380" y="96" width="160" height="44" rx="8"/>
+    <text class="label-accent" x="460" y="123" font-size="14" text-anchor="middle">"helloWorld"</text>
+    <g><line class="stroke-accent" x1="220" y1="118" x2="372" y2="118"/><polyline class="stroke-accent" points="364,112 372,118 364,124"/></g>
+  </svg>
   <figcaption>Memory Allocate</figcaption>
 </figure>
 
@@ -57,8 +103,22 @@ Heap Inspection은 보통의 개발자들이 잘 신경 쓰지 않는 보안 취
 
 JVM의 Garbage Collector는 Stack에서 더 이상 참조하지 않게 된 Heap 영역의 데이터들을 수거하기 때문에, 우리는 우선적으로 **객체를 null로 초기화하는 방법**을 떠올릴 수 있다.
 
-<figure>
-  <img src="/posts/heap-inspection/img-05.png" alt="password = null; 이후 메모리 상태" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 200" role="img" aria-label="password를 null로 초기화한 뒤의 메모리">
+    <text class="label" x="40" y="30" font-size="13">Stack 영역</text>
+    <rect class="field" x="30" y="42" width="230" height="140" rx="10"/>
+    <rect class="surfbox" x="70" y="96" width="150" height="44" rx="8"/>
+    <text class="ink" x="145" y="118" font-size="14" text-anchor="middle">password</text>
+    <text class="label" x="145" y="134" font-size="11" text-anchor="middle">= null</text>
+    <text class="label" x="360" y="30" font-size="13">Heap 영역</text>
+    <rect class="field" x="340" y="42" width="230" height="140" rx="10"/>
+    <rect class="surfbox" x="380" y="96" width="160" height="44" rx="8" opacity="0.55" stroke-dasharray="5 4"/>
+    <text class="label" x="460" y="118" font-size="14" text-anchor="middle" opacity="0.7">"helloWorld"</text>
+    <text class="label" x="460" y="134" font-size="10" text-anchor="middle" opacity="0.7">참조 없음 · GC 대상</text>
+    <g><line class="stroke-muted" x1="220" y1="118" x2="372" y2="118" stroke-dasharray="5 5" opacity="0.5"/></g>
+    <line class="stroke-accent" x1="286" y1="104" x2="306" y2="132" stroke-width="3"/>
+    <line class="stroke-accent" x1="306" y1="104" x2="286" y2="132" stroke-width="3"/>
+  </svg>
   <figcaption>password = null;</figcaption>
 </figure>
 
@@ -70,24 +130,30 @@ password를 null로 초기화함으로써 더 이상 사용되지 않는 문자�
 
 ### 2. 객체를 다른 값으로 overwrite
 
-<figure>
-  <img src="/posts/heap-inspection/img-06.png" alt='password = "helloPassword";' />
-</figure>
+<pre>password = <span class="st">"helloPassword"</span>;</pre>
 
 결론부터 말하자면 이 방법도 유효하지 않다. String은 불변(immutable) 객체이기 때문이다. String은 한 번 생성이 되면 절대 바뀌지 않는다.
 
 아까 전에 선언한 `password` 객체의 값을 “helloPassword”로 재할당해보자. 이때 기존에 있던 “helloWorld”의 값이 “helloPassword”로 변경된다고 생각할 수도 있겠으나, 그렇지가 않다. JVM은 기존의 “helloWorld”와 별개로 “helloPassword”라는 문자열을 새롭게 생성하고, `password`가 가리키는 힙 주소를 이 “helloPassword” 문자열이 존재하는 위치로 변경한다. 따라서 메모리 상에는 “helloWorld”와 “helloPassword” 두 개의 문자열이 동시에 존재하게 된다.
 
-<div class="cols two">
-  <figure>
-    <img src="/posts/heap-inspection/img-07.png" alt="재할당 변경 전" />
-    <figcaption>변경 전</figcaption>
-  </figure>
-  <figure>
-    <img src="/posts/heap-inspection/img-08.png" alt="재할당 변경 후" />
-    <figcaption>변경 후</figcaption>
-  </figure>
-</div>
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 240" role="img" aria-label="재할당 전후 메모리 상태">
+    <text class="label" x="40" y="30" font-size="13">Stack 영역</text>
+    <rect class="field" x="30" y="42" width="230" height="180" rx="10"/>
+    <rect class="surfbox" x="70" y="120" width="150" height="44" rx="8"/>
+    <text class="ink" x="145" y="147" font-size="14" text-anchor="middle">password</text>
+    <text class="label" x="360" y="30" font-size="13">Heap 영역</text>
+    <rect class="field" x="340" y="42" width="230" height="180" rx="10"/>
+    <rect class="surfbox" x="380" y="60" width="160" height="40" rx="8" opacity="0.55" stroke-dasharray="5 4"/>
+    <text class="label" x="460" y="80" font-size="13" text-anchor="middle" opacity="0.7">"helloWorld"</text>
+    <text class="label" x="460" y="94" font-size="10" text-anchor="middle" opacity="0.7">여전히 잔존</text>
+    <rect class="accentbox" x="380" y="150" width="160" height="44" rx="8"/>
+    <text class="label-accent" x="460" y="177" font-size="13" text-anchor="middle">"helloPassword"</text>
+    <g><line class="stroke-accent" x1="220" y1="150" x2="372" y2="168"/><polyline class="stroke-accent" points="364,160 372,168 362,172"/></g>
+    <line class="stroke-muted" x1="222" y1="132" x2="372" y2="82" stroke-dasharray="5 5" opacity="0.45"/>
+  </svg>
+  <figcaption>참조만 새 문자열로 옮겨갈 뿐, 기존 "helloWorld"는 힙에 그대로 남는다</figcaption>
+</figure>
 
 이렇게 String을 메모리에서 해제하기 위한 두 가지 방법을 생각해봤는데,
 
@@ -100,9 +166,9 @@ password를 null로 초기화함으로써 더 이상 사용되지 않는 문자�
 
 그래서 자바 암호화 설계 가이드에서는 패스워드와 같은 민감 데이터를 코드 상에서 다룰 때는 String보다 char[]을 사용하는 것을 권장하고 있다. char[]은 *mutable* 객체로, String과 다르게 값의 변경이 가능하다.
 
-<figure>
-  <img src="/posts/heap-inspection/img-09.png" alt="char[] 배열을 overwrite하는 코드" />
-</figure>
+<pre><span class="kw">char</span>[] password = {<span class="st">'s'</span>, <span class="st">'e'</span>, <span class="st">'c'</span>, <span class="st">'r'</span>, <span class="st">'e'</span>, <span class="st">'t'</span>};
+<span class="cm">// 사용이 끝나면 스페이스(0x20)로 덮어쓴다</span>
+Arrays.<span class="kw">fill</span>(password, (<span class="kw">char</span>) 0x20);</pre>
 
 password를 “secret”이라는 char형 배열로 선언하고, 이를 마음껏 사용한 뒤에 아스키코드 0x20번, 즉 스페이스바로 배열을 덮어씌워주기만 하면, 기존의 “secret”이라는 패스워드 정보는 메모리 공간 어디에서도 찾아볼 수 없게 된다.
 
@@ -127,8 +193,23 @@ password를 “secret”이라는 char형 배열로 선언하고, 이를 마음�
 
 이를 설명하기 위해서는 GC가 설계된 방식을 알아야 한다. 가비지 컬렉션이 실행되면 JVM GC는 더 이상 사용되지 않는 객체들을 메모리 상에서 해제하게 되는데, 이때 JVM은 일시적으로 모든 스레드를 중지한다. 이를 stop the world라고 하는데, 이 때문에 가비지 컬렉션이 실행되는 동안에는 애플리케이션의 성능이 저하될 수 있다.
 
-<figure>
-  <img src="/posts/heap-inspection/img-10.png" alt="가비지 컬렉터가 사용되지 않는 객체를 수거하는 다이어그램" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 200" role="img" aria-label="가비지 컬렉션과 Stop the World">
+    <text class="label" x="40" y="30" font-size="13">Heap 영역</text>
+    <rect class="field" x="30" y="42" width="360" height="140" rx="10"/>
+    <rect class="accentbox" x="56" y="96" width="86" height="40" rx="7"/>
+    <text class="label-accent" x="99" y="121" font-size="12" text-anchor="middle">live</text>
+    <rect class="surfbox" x="152" y="96" width="86" height="40" rx="7" opacity="0.5" stroke-dasharray="5 4"/>
+    <text class="label" x="195" y="121" font-size="12" text-anchor="middle" opacity="0.7">garbage</text>
+    <rect class="surfbox" x="248" y="96" width="86" height="40" rx="7" opacity="0.5" stroke-dasharray="5 4"/>
+    <text class="label" x="291" y="121" font-size="12" text-anchor="middle" opacity="0.7">garbage</text>
+    <g transform="translate(430 116)"><line class="stroke-accent" x1="-40" y1="0" x2="0" y2="0"/><polyline class="stroke-accent" points="-8,-6 0,0 -8,6"/></g>
+    <text class="label-accent" x="410" y="102" font-size="13" text-anchor="middle" font-weight="700">GC</text>
+    <rect class="fill-soft" x="446" y="96" width="120" height="40" rx="7"/>
+    <text class="label" x="506" y="121" font-size="18" text-anchor="middle">🗑</text>
+    <rect class="accentbox" x="30" y="156" width="536" height="0.5" opacity="0"/>
+    <text class="label" x="300" y="176" font-size="12" text-anchor="middle">Stop the World — GC 동안 모든 스레드 일시 정지</text>
+  </svg>
 </figure>
 
 따라서 JVM은 자체적인 알고리즘에 따라 가비지 컬렉션을 수행할 적절한 시점을 찾아 성능을 최적화할 수 있도록 설계되어 있다. 때문에 개발자가 `System.gc()`로 가비지 컬렉터를 호출하더라도, JVM의 판단에 따라 가비지 컬렉터가 즉시 실행되지 않을 수도 있는 것이다. 따라서 `System.gc()` 메서드를 이용해 가비지 컬렉터를 강제로 실행시키는 것은 권장되지 않는다.
@@ -139,13 +220,26 @@ password를 “secret”이라는 char형 배열로 선언하고, 이를 마음�
 
 대부분의 프레임워크는 입력값을 char[]로 받을 수 있는 방법을 제공하지 않는다. 일반적으로 입력값을 String으로 받고, 이후에 필요에 따라 char[]로 변환하는 방식을 취하게 된다.
 
-<figure>
-  <img src="/posts/heap-inspection/img-11.png" alt="사용자 입력이 String으로 들어와 char[]로 변환되는 흐름" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 130" role="img" aria-label="사용자 입력이 String으로 들어와 char 배열로 변환되는 흐름">
+    <rect class="surfbox" x="30" y="48" width="120" height="44" rx="8"/>
+    <text class="ink" x="90" y="75" font-size="13" text-anchor="middle">사용자 입력</text>
+    <g transform="translate(168 70)"><line class="stroke-accent" x1="-12" y1="0" x2="14" y2="0"/><polyline class="stroke-accent" points="6,-6 14,0 6,6"/></g>
+    <rect class="accentbox" x="190" y="48" width="120" height="44" rx="8"/>
+    <text class="label-accent" x="250" y="70" font-size="14" text-anchor="middle" font-weight="700">String</text>
+    <text class="label" x="250" y="86" font-size="10" text-anchor="middle">불가피하게 생성</text>
+    <g transform="translate(328 70)"><line class="stroke-accent" x1="-12" y1="0" x2="14" y2="0"/><polyline class="stroke-accent" points="6,-6 14,0 6,6"/></g>
+    <rect class="surfbox" x="350" y="48" width="120" height="44" rx="8"/>
+    <text class="ink" x="410" y="75" font-size="13" text-anchor="middle">변환 처리</text>
+    <g transform="translate(488 70)"><line class="stroke-accent" x1="-12" y1="0" x2="14" y2="0"/><polyline class="stroke-accent" points="6,-6 14,0 6,6"/></g>
+    <rect class="accentbox" x="510" y="48" width="80" height="44" rx="8"/>
+    <text class="label-accent" x="550" y="75" font-size="13" text-anchor="middle" font-weight="700">char[]</text>
+  </svg>
 </figure>
 
 지금까지 보안을 위해 char[]를 써야 하니 어쩌니 했던 것도, 어쨌든 Http Request로 사용자 입력을 받게 되면 서버에 요청이 들어오는 시점에는 필연적으로 String 인스턴스가 존재하게 되고, char[]로 변환한 이후에도 String형 민감 정보는 여전히 메모리에 존재하게 된다는 것이다.
 
-즉, 지금까지 강조한 “민감 데이터를 char[]로 관리하는 것”이 Heap Inspection 취약점을 완전히 제거해주지는 않는다. 서두에 말했듯이, **대부분의 라이브러리 또는 프레임워크가 이를 처리할 수 있도록 잘 설계되어 있지 않기 때문**이다. 하지만 다시 상기해보자. Heap Inspection 예방책으로써의 우리의 목표는 “민감한 정보가 메모리에 올라와 있는 시간을 최소화”하는 것이다.
+즉, 지금까지 강조한 “민감 데이터를 char[]로 관리하는 것”이 Heap Inspection 취약점을 완전히 제거해주지는 않는다. 서두에 말했듯이, 대부분의 라이브러리 또는 프레임워크가 이를 처리할 수 있도록 잘 설계되어 있지 않기 때문이다. 하지만 다시 상기해보자. Heap Inspection 예방책으로써의 우리의 목표는 “민감한 정보가 메모리에 올라와 있는 시간을 최소화”하는 것이다.
 
 String 생성 자체를 막을 수 없다면 최대한 빨리 char[]로 변환해서, 가비지 컬렉터가 문자열 데이터를 메모리에서 최대한 빨리 회수할 수 있도록 해야 한다. 이렇게 함으로써 “민감한 정보가 메모리에 올라와 있는 시간을 최소화”할 수 있다.
 
