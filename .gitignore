@@ -6,3 +6,6 @@ node_modules/
 
 # 컨셉 불일치로 제외한 원본 이미지(검토용, 비공개)
 _excluded-images/
+
+# 다음 세션 이어가기 노트 (로컬 전용)
+HANDOFF.md
