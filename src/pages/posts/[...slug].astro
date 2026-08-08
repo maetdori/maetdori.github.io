@@ -22,7 +22,6 @@ const d = post.data;
       <a class="nav-brand" href="/">maetdori<span class="hl">.log</span></a>
       <div class="nav-links">
         <a href="/">글</a>
-        <a href="https://portfolio.minijihob.workers.dev" target="_blank" rel="noopener">Portfolio ↗</a>
         <a href="https://github.com/maetdori" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
@@ -34,13 +33,7 @@ const d = post.data;
       <span class="eyebrow">{d.category}</span>
       <h1>{d.title}</h1>
       <div class="byline">
-        <span class="avatar">해</span>
-        <span>이해인</span><span>·</span>
         <span>{d.date}</span>
-        {d.readingTime && (<><span>·</span><span>{d.readingTime}</span></>)}
-      </div>
-      <div class="tags">
-        {d.tags.map((t) => <span class="wt">{t}</span>)}
       </div>
     </header>
 
