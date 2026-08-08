@@ -12,8 +12,10 @@ export async function getStaticPaths() {
 
 type Props = { post: CollectionEntry<'posts'> };
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 const d = post.data;
+// 본문 h2/h3만 목차로 (Astro가 heading에 자동 부여한 slug 사용)
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
 <Base title={`${d.title} — maetdori.log`} description={d.description} article>
@@ -42,6 +44,19 @@ const d = post.data;
     </div>
   </article>
 
+  {
+    toc.length > 1 && (
+      <aside class="toc" aria-label="목차">
+        <p class="toc-label">On this page</p>
+        {toc.map((h) => (
+          <a href={`#${h.slug}`} class:list={['toc-link', { sub: h.depth === 3 }]}>
+            {h.text}
+          </a>
+        ))}
+      </aside>
+    )
+  }
+
   <div class="post-foot">
     <a class="back-link" href="/">← 다른 글 보러 가기</a>
   </div>
@@ -51,4 +66,32 @@ const d = post.data;
       <p>© {new Date().getFullYear()} 이해인 (maetdori) · Built with Astro</p>
     </div>
   </footer>
+
+  <script>
+    // TOC 스크롤 스파이: 현재 보이는 섹션의 목차 링크를 강조
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toc a'));
+    const map = new Map<string, HTMLAnchorElement>();
+    links.forEach((a) => {
+      const id = a.getAttribute('href')?.slice(1);
+      const el = id ? document.getElementById(decodeURIComponent(id)) : null;
+      if (el && id) map.set(decodeURIComponent(id), a);
+    });
+    if (map.size) {
+      const spy = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              links.forEach((l) => l.classList.remove('active'));
+              map.get(e.target.id)?.classList.add('active');
+            }
+          });
+        },
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+      );
+      map.forEach((_, id) => {
+        const el = document.getElementById(id);
+        if (el) spy.observe(el);
+      });
+    }
+  </script>
 </Base>

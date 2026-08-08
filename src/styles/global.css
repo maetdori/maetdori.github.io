@@ -307,6 +307,31 @@ img { max-width: 100%; }
 .footer { padding: 40px 0 60px; color: var(--faint); font-size: 0.86rem; text-align: center; border-top: 1px solid var(--border); }
 .footer a { color: var(--muted); }
 
+/* ─────────────  단일 이미지 figure (그라데이션 카드 없음)  ───────────── */
+.prose figure.figplain { margin: 34px 0; }
+.prose figure.figplain svg { display: block; width: 100%; height: auto; }
+
+/* 리스트를 바로 앞 문단(소제목)에 붙여 가독성 향상 */
+.prose p + ul, .prose p + ol { margin-top: 12px; }
+
+/* 콜아웃 안 코드블록 · 참고자료 리스트 · 각주 */
+.callout pre { font-size: 0.82rem; padding: 11px 14px; line-height: 1.65; }
+.callout ul { margin: 8px 0 0; padding-left: 1.15em; }
+.callout li { margin: 6px 0; font-size: 0.92rem; color: var(--text); line-height: 1.5; }
+.callout li::marker { color: var(--accent); }
+.refsrc { color: var(--faint); font-size: 0.78rem; font-family: var(--mono); margin-left: 3px; }
+.prose .fnote { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-top: 14px; padding-left: 14px; border-left: 2px solid var(--border); }
+.prose .fnote strong { color: var(--text); }
+
+/* ─────────────  TOC 사이드바 (넓은 화면에서 본문 오른쪽 여백에 고정)  ───────────── */
+.toc { position: fixed; top: 96px; left: calc(50% + 408px); width: 196px; max-height: calc(100vh - 140px); overflow-y: auto; }
+.toc-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); font-weight: 700; margin: 0 0 12px; }
+.toc a { display: block; font-size: 0.82rem; color: var(--muted); text-decoration: none; padding: 5px 0 5px 14px; border-left: 2px solid var(--border); line-height: 1.4; }
+.toc a.sub { padding-left: 26px; font-size: 0.78rem; }
+.toc a:hover { color: var(--text); text-decoration: none; }
+.toc a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+@media (max-width: 1280px) { .toc { display: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
