@@ -1,7 +1,7 @@
 ---
 title: 스크롤과 페이징
 description: 무한 스크롤과 페이징을 UX와 기술 두 관점에서 비교하고, 커서/오프셋 페이징의 성능 차이와 count 쿼리 캐싱까지 정리합니다.
-date: '2022-04-27(수)'
+date: '2022.04.27'
 pubDate: 2022-04-27
 category: Backend · Database
 tags: [backend, database, ux]
