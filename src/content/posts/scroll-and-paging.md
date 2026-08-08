@@ -9,8 +9,43 @@ thumb: /posts/scroll-and-paging/img-01.png
 readingTime: 8 min read
 ---
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-01.png" alt="페이징과 무한 스크롤 비교 목업" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 720 280" role="img" aria-label="페이징과 무한 스크롤 비교">
+    <!-- 왼쪽: 페이징 -->
+    <g transform="translate(8 18)">
+      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
+      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
+      <rect class="field-2" x="118" y="8" width="150" height="14" rx="7"/>
+      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
+      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
+      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/><rect class="line-soft" x="84" y="118" width="80" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="136" x2="256" y2="136"/>
+      <rect class="line" x="84" y="148" width="150" height="6" rx="3"/>
+      <g transform="translate(170 200)">
+        <polyline class="stroke-accent" points="-58,-6 -65,0 -58,6"/>
+        <circle class="pg" cx="-38" cy="0" r="4"/><circle class="pg" cx="-19" cy="0" r="4"/><circle class="pg" cx="0" cy="0" r="4"/><circle class="pg" cx="19" cy="0" r="4"/><circle class="pg" cx="38" cy="0" r="4"/>
+        <polyline class="stroke-accent" points="58,-6 65,0 58,6"/>
+      </g>
+      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">페이징</text>
+    </g>
+    <!-- 오른쪽: 무한 스크롤 -->
+    <g transform="translate(372 18)">
+      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
+      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
+      <rect class="field-2" x="118" y="8" width="150" height="14" rx="7"/>
+      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
+      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
+      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/><rect class="line-soft" x="84" y="118" width="80" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="136" x2="256" y2="136"/>
+      <rect class="line-soft" x="84" y="148" width="110" height="6" rx="3"/>
+      <circle class="stroke-accent" cx="170" cy="200" r="9" stroke-dasharray="30 16"/>
+      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">무한 스크롤</text>
+    </g>
+  </svg>
 </figure>
 
 **스크롤**과 **페이징**은 모두 사용자에게 데이터를 보여주기 위한 하나의 방법이다.
@@ -23,8 +58,25 @@ readingTime: 8 min read
 
 ## UX의 관점에서
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-02.png" alt="무한 스크롤 인터페이스 목업" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 300" role="img" aria-label="무한 스크롤 인터페이스">
+    <rect class="win" x="10" y="10" width="580" height="280" rx="12"/>
+    <rect class="bar" x="10" y="10" width="580" height="34" rx="12"/>
+    <circle class="dot" cx="34" cy="27" r="4"/><circle class="dot" cx="50" cy="27" r="4"/><circle class="dot" cx="66" cy="27" r="4"/>
+    <rect class="field-2" x="210" y="18" width="180" height="18" rx="9"/>
+    <rect class="field" x="140" y="66" width="320" height="188" rx="6"/>
+    <g>
+      <rect class="line" x="160" y="84" width="260" height="7" rx="3.5"/><rect class="line-soft" x="160" y="98" width="150" height="7" rx="3.5"/>
+      <line class="divider" x1="160" y1="118" x2="440" y2="118"/>
+      <rect class="line" x="160" y="132" width="240" height="7" rx="3.5"/><rect class="line-soft" x="160" y="146" width="170" height="7" rx="3.5"/>
+      <line class="divider" x1="160" y1="166" x2="440" y2="166"/>
+      <rect class="line" x="160" y="180" width="270" height="7" rx="3.5"/><rect class="line-soft" x="160" y="194" width="140" height="7" rx="3.5"/>
+      <line class="divider" x1="160" y1="214" x2="440" y2="214"/>
+      <rect class="line-soft" x="160" y="228" width="120" height="7" rx="3.5"/>
+    </g>
+    <circle class="stroke-accent" cx="300" cy="274" r="11" stroke-dasharray="36 20"/>
+  </svg>
+  <figcaption>스크롤 하단에 닿으면 다음 데이터가 자동으로 로딩된다</figcaption>
 </figure>
 
 **무한 스크롤**은 마감선이 보이지 않는 상태에서 방대한 양의 콘텐츠를 스크롤할 수 있는 인터페이스 패턴이다. 이 기술을 구현한 페이지에서는 사용자가 스크롤하여 하단에 닿을 때 새로운 페이지가 로드된다.
@@ -50,8 +102,27 @@ readingTime: 8 min read
 
 ## 페이징
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-03.png" alt="페이징 인터페이스 목업" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 300" role="img" aria-label="페이징 인터페이스">
+    <rect class="win" x="10" y="10" width="580" height="280" rx="12"/>
+    <rect class="bar" x="10" y="10" width="580" height="34" rx="12"/>
+    <circle class="dot" cx="34" cy="27" r="4"/><circle class="dot" cx="50" cy="27" r="4"/><circle class="dot" cx="66" cy="27" r="4"/>
+    <rect class="field-2" x="210" y="18" width="180" height="18" rx="9"/>
+    <rect class="field" x="140" y="66" width="320" height="160" rx="6"/>
+    <g>
+      <rect class="line" x="160" y="84" width="260" height="7" rx="3.5"/><rect class="line-soft" x="160" y="98" width="150" height="7" rx="3.5"/>
+      <line class="divider" x1="160" y1="118" x2="440" y2="118"/>
+      <rect class="line" x="160" y="132" width="240" height="7" rx="3.5"/><rect class="line-soft" x="160" y="146" width="170" height="7" rx="3.5"/>
+      <line class="divider" x1="160" y1="166" x2="440" y2="166"/>
+      <rect class="line" x="160" y="180" width="270" height="7" rx="3.5"/><rect class="line-soft" x="160" y="194" width="140" height="7" rx="3.5"/>
+    </g>
+    <g transform="translate(300 258)">
+      <polyline class="stroke-accent" points="-92,-7 -101,0 -92,7"/>
+      <circle class="pg" cx="-66" cy="0" r="4.5"/><circle class="pg" cx="-44" cy="0" r="4.5"/><circle class="pg" cx="-22" cy="0" r="4.5"/><circle class="pg" cx="0" cy="0" r="4.5"/><circle class="pg" cx="22" cy="0" r="4.5"/><circle class="pg" cx="44" cy="0" r="4.5"/><circle class="pg" cx="66" cy="0" r="4.5"/>
+      <polyline class="stroke-accent" points="92,-7 101,0 92,7"/>
+    </g>
+  </svg>
+  <figcaption>페이지 네비게이션으로 원하는 페이지에 바로 접근할 수 있다</figcaption>
 </figure>
 
 **페이징**은 콘텐츠를 별도의 페이지로 나누는 사용자 인터페이스 패턴이다. 사용자는 페이지 네비게이션을 통해 다른 페이지로 이동할 수 있다.
@@ -80,7 +151,7 @@ readingTime: 8 min read
 ## 정리
 
 - 무한 스크롤은 상대적으로 모바일 환경에, 페이징은 상대적으로 PC 환경에 적합하다.
-- 무한 스크롤은 방대한 양의 콘텐츠를 탐색할 때, 페이징은 특정 정보를 검색하고자 할 때 적합하다.
+- 무한 스크롤은 방대한 양의 콘텐츠를 <mark>탐색</mark>할 때, 페이징은 특정 정보를 <mark>검색</mark>하고자 할 때 적합하다.
 - 무한 스크롤은 Twitter, Facebook, Pinterest, Instagram과 같이 사용자 생성 콘텐츠의 스트리밍 사이트 또는 앱에 가장 적합하다. 반면 페이징은 사용자가 특정 항목을 찾는 목표지향 사이트 및 앱에 적합하다.
 
 <div class="callout">
@@ -93,8 +164,41 @@ readingTime: 8 min read
 
 ## 기술의 관점에서
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-04.png" alt="오프셋 페이징과 커서 페이징 비교" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 720 280" role="img" aria-label="오프셋 페이징과 커서 페이징 비교">
+    <!-- 오프셋: 페이지 번호로 접근 -->
+    <g transform="translate(8 18)">
+      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
+      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
+      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
+      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
+      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/><rect class="line-soft" x="84" y="118" width="80" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="136" x2="256" y2="136"/>
+      <rect class="line" x="84" y="148" width="150" height="6" rx="3"/>
+      <g transform="translate(170 200)">
+        <polyline class="stroke-accent" points="-58,-6 -65,0 -58,6"/>
+        <circle class="pg" cx="-38" cy="0" r="4"/><circle class="pg" cx="-19" cy="0" r="4"/><circle class="pg" cx="0" cy="0" r="4"/><circle class="pg" cx="19" cy="0" r="4"/><circle class="pg" cx="38" cy="0" r="4"/>
+        <polyline class="stroke-accent" points="58,-6 65,0 58,6"/>
+      </g>
+      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">오프셋 페이징</text>
+    </g>
+    <!-- 커서: 마지막 항목 다음부터 -->
+    <g transform="translate(372 18)">
+      <rect class="win" x="0" y="0" width="340" height="244" rx="10"/>
+      <rect class="bar" x="0" y="0" width="340" height="30" rx="10"/>
+      <circle class="dot" cx="18" cy="15" r="3.5"/><circle class="dot" cx="30" cy="15" r="3.5"/><circle class="dot" cx="42" cy="15" r="3.5"/>
+      <rect class="field" x="70" y="50" width="200" height="122" rx="6"/>
+      <rect class="line" x="84" y="64" width="150" height="6" rx="3"/><rect class="line-soft" x="84" y="76" width="92" height="6" rx="3"/>
+      <line class="divider" x1="84" y1="94" x2="256" y2="94"/>
+      <rect class="line" x="84" y="106" width="140" height="6" rx="3"/>
+      <rect class="accentbox" x="78" y="130" width="184" height="26" rx="5"/>
+      <rect class="fill-accent" x="90" y="141" width="120" height="5" rx="2.5"/>
+      <text class="label-accent" x="170" y="188" font-size="11" text-anchor="middle">▲ 마지막 항목 = cursor</text>
+      <text class="label" x="170" y="232" font-size="13" text-anchor="middle">커서 페이징</text>
+    </g>
+  </svg>
   <figcaption>오프셋 페이징 &nbsp;·&nbsp; 커서 페이징</figcaption>
 </figure>
 
@@ -106,20 +210,31 @@ readingTime: 8 min read
 
 ### 오프셋 페이징
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-05.png" alt="오프셋 페이징 목업" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 260" role="img" aria-label="오프셋 페이징 동작">
+    <rect class="win" x="10" y="10" width="580" height="240" rx="12"/>
+    <rect class="bar" x="10" y="10" width="580" height="34" rx="12"/>
+    <circle class="dot" cx="34" cy="27" r="4"/><circle class="dot" cx="50" cy="27" r="4"/><circle class="dot" cx="66" cy="27" r="4"/>
+    <rect class="field" x="140" y="66" width="320" height="120" rx="6"/>
+    <rect class="line" x="160" y="82" width="260" height="7" rx="3.5"/><rect class="line-soft" x="160" y="96" width="150" height="7" rx="3.5"/>
+    <line class="divider" x1="160" y1="116" x2="440" y2="116"/>
+    <rect class="line" x="160" y="130" width="240" height="7" rx="3.5"/><rect class="line-soft" x="160" y="144" width="170" height="7" rx="3.5"/>
+    <line class="divider" x1="160" y1="164" x2="440" y2="164"/>
+    <rect class="line" x="160" y="176" width="270" height="7" rx="3.5"/>
+    <g transform="translate(300 218)">
+      <polyline class="stroke-accent" points="-92,-7 -101,0 -92,7"/>
+      <circle class="pg" cx="-66" cy="0" r="4.5"/><circle class="pg" cx="-44" cy="0" r="4.5"/><circle class="pg" cx="-22" cy="0" r="4.5"/><circle class="pg" cx="0" cy="0" r="4.5"/><circle class="pg" cx="22" cy="0" r="4.5"/><circle class="pg" cx="44" cy="0" r="4.5"/><circle class="pg" cx="66" cy="0" r="4.5"/>
+      <polyline class="stroke-accent" points="92,-7 101,0 92,7"/>
+    </g>
+  </svg>
 </figure>
 
 오프셋 페이징은 DB의 `offset` 쿼리를 사용하여 페이지 단위로 요청 및 응답한다. 전통적인 방식의 페이징 쿼리는 일반적으로 다음과 같은 형태이다.
 
-```sql
-SELECT *
-FROM items
-WHERE 조건문
-ORDER BY id DESC
-OFFSET 건너뛸행
-LIMIT 페이지사이즈
-```
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> items
+<span class="kw">WHERE</span> 조건문
+<span class="kw">ORDER BY</span> id <span class="kw">DESC</span>
+<span class="kw">OFFSET</span> 건너뛸행 <span class="kw">LIMIT</span> 페이지사이즈</pre>
 
 이와 같은 형태의 페이징 쿼리는 2가지 문제점을 가지고 있다.
 
@@ -130,8 +245,22 @@ LIMIT 페이지사이즈
 2. **offset 쿼리의 성능 이슈**
    - offset 쿼리를 사용하면 뒤로 갈수록 페이지 조회에 드는 비용이 커진다.
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-06.png" alt="offset 페이징 비용 다이어그램" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 250" role="img" aria-label="offset 페이징 비용">
+    <text class="ink" x="40" y="34" font-size="15" font-weight="700">OFFSET 10000 · LIMIT 20</text>
+    <text class="label" x="40" y="54" font-size="13">→ 10,020개 행을 읽어야 한다</text>
+    <!-- 스캔한 행 스택 -->
+    <rect class="fill-surf2 win" x="50" y="74" width="120" height="126" rx="6"/>
+    <rect class="fill-accent" x="50" y="176" width="120" height="24" rx="6"/>
+    <line class="divider" x1="50" y1="176" x2="170" y2="176"/>
+    <!-- 연결선 -->
+    <path class="stroke-muted" d="M170 128 h34" />
+    <path class="stroke-accent" d="M170 188 h34" />
+    <text class="label" x="212" y="124" font-size="14">앞의 <tspan font-weight="700">10,000행</tspan> — 읽고 그냥 버림 🗑</text>
+    <text class="label" x="212" y="152" font-size="12" opacity="0.8">뒤로 갈수록 버리는 행이 늘어 느려진다</text>
+    <text class="label-accent" x="212" y="192" font-size="14">마지막 <tspan font-weight="700">20행</tspan> — 실제 사용</text>
+  </svg>
+  <figcaption>오프셋이 커질수록 읽고 버리는 행이 늘어나 비용이 커진다</figcaption>
 </figure>
 
 예를 들어 `offset 10000, limit 20`이라 하면 최종적으로 <mark>10,020개의 행을 읽어야 한다. 그리고 이 중 앞의 10,000개 행을 버리게 된다.</mark> (실제 필요한 건 마지막 20개뿐이니) 뒤로 갈수록 버리지만 읽어야 할 행의 개수가 많아 뒤로 갈수록 느려지고, 낭비도 커진다.
@@ -144,14 +273,11 @@ LIMIT 페이지사이즈
 
 커서 페이징은 사용자에게 응답해준 마지막 데이터를 기준으로 다음 n개를 요청 및 응답한다.
 
-```sql
-SELECT *
-FROM items
-WHERE 조건문
-  AND id < 마지막조회ID  -- 직전 조회 결과의 마지막 id
-ORDER BY id DESC
-LIMIT 페이지사이즈
-```
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> items
+<span class="kw">WHERE</span> 조건문
+  <span class="kw">AND</span> id &lt; 마지막조회ID  <span class="cm">-- 직전 조회 결과의 마지막 id</span>
+<span class="kw">ORDER BY</span> id <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> 페이지사이즈</pre>
 
 마지막 조회 결과의 ID를 조건문에 사용하기 때문에 쿼리를 실행하면 조회 시작 부분을 인덱스로 빠르게 찾아 매번 첫 페이지만 읽는다. 즉, 아무리 페이지가 뒤로 가더라도 처음 페이지를 읽은 것과 동일한 성능을 가지게 된다.
 
@@ -184,8 +310,27 @@ LIMIT 페이지사이즈
 
 count 쿼리로 인한 성능 이슈를 <mark>첫 페이지 조회 결과를 caching</mark> 함으로써 해결할 수 있다. 처음 검색 시 조회된 count 결과를 응답결과로 내려주어 JS에서 이를 캐싱하고, 매 페이징 버튼마다 count 결과를 함께 내려주는 것이다. 그리고 서버에서는 요청에 넘어온 항목 중, 캐싱된 count 값이 있으면 이를 재사용하고, 없으면 count 쿼리를 수행한다.
 
-<figure>
-  <img src="/posts/scroll-and-paging/img-08.png" alt="count 캐싱 방식 설명" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 200" role="img" aria-label="count 결과 캐싱">
+    <g transform="translate(300 58)">
+      <polyline class="stroke-accent" points="-150,-6 -159,0 -150,6"/>
+      <rect class="surfbox" x="-140" y="-16" width="30" height="32" rx="6"/>
+      <rect class="surfbox" x="-100" y="-16" width="30" height="32" rx="6"/>
+      <rect class="accentbox" x="-60" y="-16" width="30" height="32" rx="6"/>
+      <rect class="surfbox" x="-20" y="-16" width="30" height="32" rx="6"/>
+      <rect class="surfbox" x="20" y="-16" width="30" height="32" rx="6"/>
+      <text class="label" x="-125" y="5" font-size="13" text-anchor="middle">1</text>
+      <text class="label" x="-85" y="5" font-size="13" text-anchor="middle">2</text>
+      <text class="label-accent" x="-45" y="5" font-size="13" text-anchor="middle">3</text>
+      <text class="label" x="-5" y="5" font-size="13" text-anchor="middle">4</text>
+      <text class="label" x="35" y="5" font-size="13" text-anchor="middle">5</text>
+      <polyline class="stroke-accent" points="70,-6 79,0 70,6"/>
+    </g>
+    <rect class="accentbox" x="120" y="112" width="360" height="52" rx="10"/>
+    <text class="label-accent" x="300" y="136" font-size="14" text-anchor="middle" font-weight="700">count 쿼리 → 최초 1회만 실행</text>
+    <text class="label" x="300" y="154" font-size="12" text-anchor="middle">이후 페이지 이동은 캐시된 count 재사용</text>
+  </svg>
+  <figcaption>첫 조회의 count 결과를 캐싱해 매 페이지마다 반복되는 count 쿼리를 없앤다</figcaption>
 </figure>
 
 이 방식은 다음과 같은 상황에서 도움이 된다.

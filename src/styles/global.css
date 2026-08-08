@@ -203,10 +203,16 @@ img { max-width: 100%; }
 }
 .prose pre {
   background: var(--surface-2); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 16px 18px; overflow-x: auto;
-  font-family: var(--mono); font-size: 0.86rem; line-height: 1.7;
+  border-radius: var(--radius); padding: 18px 22px; overflow-x: auto;
+  font-family: var(--mono); font-size: 0.9rem; line-height: 1.75;
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
 }
-.prose pre code { font-family: var(--mono); background: none; border: 0; padding: 0; }
+.prose pre code { font-family: var(--mono); background: none; border: 0; padding: 0; color: inherit; }
+/* 목업(Image #4)과 동일: 키워드는 오렌지 볼드, 주석은 흐리게 */
+.prose pre .kw { color: var(--accent); font-weight: 700; }
+.prose pre .cm { color: var(--faint); font-style: italic; }
+.prose pre .st { color: var(--accent-strong); }
 
 /* callout */
 .callout {
@@ -231,6 +237,40 @@ img { max-width: 100%; }
 .prose th, .prose td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
 .prose th { background: var(--surface-2); font-weight: 700; }
 .prose td { background: var(--surface); }
+
+/* ─────────────  Flat mockup illustrations (concept SVG)  ─────────────
+   래스터 이미지를 대체하는 테마 대응 벡터 일러스트. Image #3(목업)의
+   크림 카드 + 플랫 브라우저 목업 스타일을 그대로 재현한다. */
+.prose figure.figmock {
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: var(--shadow);
+  margin: 30px 0;
+}
+.prose figure.figmock svg { display: block; width: 100%; height: auto; }
+.prose figure.figmock figcaption { margin-top: 14px; }
+.mock .win { fill: var(--surface); stroke: var(--border); stroke-width: 1; }
+.mock .bar { fill: var(--surface-2); }
+.mock .dot { fill: var(--faint); }
+.mock .line { fill: var(--border); }
+.mock .line-soft { fill: var(--border); opacity: 0.55; }
+.mock .divider { stroke: var(--border); stroke-width: 1; }
+.mock .field { fill: var(--surface); stroke: var(--border); stroke-width: 1; }
+.mock .field-2 { fill: var(--surface-2); }
+.mock .pg { fill: var(--accent); }
+.mock .pg-soft { fill: var(--accent); opacity: 0.4; }
+.mock .stroke-accent { stroke: var(--accent); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.mock .stroke-muted { stroke: var(--muted); stroke-width: 2; fill: none; stroke-linecap: round; }
+.mock .accentbox { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.mock .surfbox { fill: var(--surface); stroke: var(--border); stroke-width: 1; }
+.mock .ink { fill: var(--text); font-family: var(--mono); }
+.mock .label { fill: var(--muted); font-family: var(--mono); }
+.mock .label-accent { fill: var(--accent-strong); font-family: var(--mono); font-weight: 700; }
+.mock .fill-accent { fill: var(--accent); }
+.mock .fill-soft { fill: var(--accent-soft); }
+.mock .fill-surf2 { fill: var(--surface-2); }
 
 /* two-column blocks (노션 columns 재현) */
 .cols { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: center; }
