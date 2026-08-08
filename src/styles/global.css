@@ -189,8 +189,19 @@ img { max-width: 100%; }
 .prose li::marker { color: var(--accent); }
 .prose img { display: block; margin: 6px auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
 .prose figure { margin: 30px 0; }
-.prose figure img { margin-bottom: 8px; }
-.prose figcaption { font-size: 0.82rem; color: var(--faint); text-align: center; font-family: var(--mono); }
+.prose figcaption { font-size: 0.82rem; color: var(--faint); text-align: center; font-family: var(--mono); margin-top: 10px; }
+
+/* 래스터 이미지(주로 게임편 픽셀아트/스크린)는 라이트 매트 프레임에 얹어
+   다크모드에서도 "의도된 패널"로 보이게 한다. figmock(SVG)에는 미적용. */
+.prose figure:not(.figmock) {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.prose figure:not(.figmock) img { display: block; margin: 0 auto; border-radius: 8px; }
+:root[data-theme="dark"] .prose figure:not(.figmock) { background: #efe9dd; border-color: #d8d0c0; }
 
 /* highlight — 시스템 accent-soft (노션의 yellow_bg 대체) */
 .prose mark, .prose .hl { background: var(--accent-soft); color: var(--accent-strong); padding: 0 4px; border-radius: 4px; font-weight: 600; }

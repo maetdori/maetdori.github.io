@@ -36,8 +36,21 @@ readingTime: 7 min read
 
 아무튼 그래서 이 정도 선에서 만들 수 있는 게임이 뭐가 있을까 하다가, **사이버 가챠샵**을 차리자는 생각을 하게 됨.
 
-<figure>
-  <img src="/posts/game-dev-without-engine/img-06.png" alt="사이버 가챠샵을 만들자" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 164" role="img" aria-label="사이버 가챠샵 개념">
+    <circle class="accentbox" cx="54" cy="82" r="26"/>
+    <circle class="stroke-accent" cx="54" cy="82" r="14" stroke-width="2"/>
+    <g transform="translate(100 82)"><line class="stroke-accent" x1="0" y1="0" x2="32" y2="0"/><polyline class="stroke-accent" points="24,-6 32,0 24,6"/></g>
+    <rect class="surfbox" x="152" y="28" width="150" height="108" rx="14"/>
+    <rect class="fill-soft" x="164" y="40" width="126" height="50" rx="10"/>
+    <circle class="fill-accent" cx="196" cy="66" r="8"/><circle class="fill-accent" cx="226" cy="60" r="8" opacity="0.5"/><circle class="fill-accent" cx="256" cy="66" r="8" opacity="0.8"/>
+    <rect class="field-2" x="206" y="104" width="42" height="22" rx="5"/>
+    <text class="label" x="227" y="154" font-size="12" text-anchor="middle">가챠 머신</text>
+    <g transform="translate(320 82)"><line class="stroke-accent" x1="0" y1="0" x2="32" y2="0"/><polyline class="stroke-accent" points="24,-6 32,0 24,6"/></g>
+    <rect class="accentbox" x="372" y="54" width="156" height="56" rx="12"/>
+    <text class="label-accent" x="450" y="88" font-size="14" text-anchor="middle" font-weight="700">픽셀 아이템 🎁</text>
+  </svg>
+  <figcaption>동전을 넣으면 픽셀 오브젝트가 나오는 사이버 가챠샵</figcaption>
 </figure>
 
 사업 아이템을 정했으면 일단 절반은 끝난 것임. (이게 맞다)
@@ -72,8 +85,17 @@ readingTime: 7 min read
 
 아이템을 *겟또다제 —!! ✨* 하게 된다.
 
-<figure>
-  <img src="/posts/game-dev-without-engine/img-13.png" alt="Spring Boot + React" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 150" role="img" aria-label="개발 스택: Spring Boot + React">
+    <rect class="surfbox" x="40" y="26" width="248" height="98" rx="12"/>
+    <circle cx="80" cy="72" r="18" fill="#6db33f"/>
+    <text class="ink" x="112" y="68" font-size="16" font-weight="700">Spring Boot</text>
+    <text class="label" x="112" y="90" font-size="11">뽑기 알고리즘 · 확률 로직</text>
+    <rect class="surfbox" x="312" y="26" width="248" height="98" rx="12"/>
+    <circle cx="352" cy="72" r="17" fill="none" stroke="#61dafb" stroke-width="3"/><circle cx="352" cy="72" r="4" fill="#61dafb"/>
+    <text class="ink" x="384" y="68" font-size="16" font-weight="700">React</text>
+    <text class="label" x="384" y="90" font-size="11">가챠 UI · 애니메이션</text>
+  </svg>
 </figure>
 
 게임 엔진을 사용할 필요가 없었기 때문에 **Spring Boot + React** 구조로 가벼운 애플리케이션을 만들어보았다.
@@ -114,8 +136,15 @@ readingTime: 7 min read
 
 ### IDEA 2 — 등급 별 확률 분배
 
-<figure>
-  <img src="/posts/game-dev-without-engine/img-18.png" alt="IDEA 2: 등급 별 확률 분배" />
+<figure class="figmock">
+  <svg class="mock" viewBox="0 0 600 96" role="img" aria-label="아이템이 아니라 등급을 뽑는다">
+    <rect class="surfbox" x="36" y="26" width="222" height="44" rx="10" opacity="0.6"/>
+    <text class="label" x="147" y="53" font-size="13" text-anchor="middle">아이템을 뽑는다</text>
+    <line class="stroke-muted" x1="66" y1="48" x2="228" y2="48" stroke-width="2"/>
+    <g transform="translate(292 48)"><line class="stroke-accent" x1="-12" y1="0" x2="16" y2="0"/><polyline class="stroke-accent" points="8,-6 16,0 8,6"/></g>
+    <rect class="accentbox" x="330" y="26" width="230" height="44" rx="10"/>
+    <text class="label-accent" x="445" y="53" font-size="14" text-anchor="middle" font-weight="700">등급을 뽑는다</text>
+  </svg>
 </figure>
 
 즉, <mark>사용자가 뽑는 것은 “아이템”이 아니라 “등급”</mark>이고, 뽑은 등급 내에서 아이템이 랜덤으로 지급된다. 이렇게 될 경우 IDEA 1에서의 문제점은 사라진다.
@@ -133,10 +162,6 @@ readingTime: 7 min read
 - IDEA 2: 확률 재분배 불필요
 
 ## 요구사항이 정리되었으면 남은 것은 구현 뿐
-
-<figure>
-  <img src="/posts/game-dev-without-engine/img-19.png" alt="구현" />
-</figure>
 
 구조가 명확했기 때문에 구현은 매우 간단하다.
 
@@ -162,9 +187,10 @@ readingTime: 7 min read
 
 위와 같은 로직으로 백엔드 로직을 구성하고, 여기에 아까 만든 화면을 React를 이용해 붙였다.
 
-<figure>
-  <img src="/posts/game-dev-without-engine/img-20.png" alt="프론트 구현 과정은 생략" />
-</figure>
+<div class="callout">
+  <span class="ic">⚛️</span>
+  <div><p>프론트 구현 과정은.. <strong>생략토록 하겠습니다.</strong></p></div>
+</div>
 
 현재로서는 가챠 게임의 핵심이 되는 아주 기본적인 기능에 대해서만 구현했지만, (디자인) 여력이 되면 확장판으로 다양한 기능들도 붙여보고 싶다.
 

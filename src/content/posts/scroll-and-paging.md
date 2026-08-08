@@ -185,17 +185,20 @@ readingTime: 8 min read
       <rect class="bar" x="0" y="0" width="340" height="28" rx="10"/>
       <circle class="dot" cx="18" cy="14" r="3.5"/><circle class="dot" cx="30" cy="14" r="3.5"/><circle class="dot" cx="42" cy="14" r="3.5"/>
       <rect class="field" x="66" y="44" width="208" height="104" rx="6"/>
-      <rect class="line" x="82" y="60" width="150" height="6" rx="3"/><rect class="line-soft" x="82" y="72" width="90" height="6" rx="3"/>
-      <line class="divider" x1="82" y1="90" x2="258" y2="90"/>
-      <rect class="accentbox" x="74" y="100" width="192" height="28" rx="6"/>
-      <rect class="fill-accent" x="86" y="111" width="120" height="6" rx="3"/>
-      <text class="label-accent" x="240" y="120" font-size="11" text-anchor="end">cursor</text>
+      <rect class="line" x="82" y="58" width="150" height="6" rx="3"/><rect class="line-soft" x="82" y="70" width="88" height="6" rx="3"/>
+      <line class="divider" x1="82" y1="86" x2="258" y2="86"/>
+      <rect class="line" x="82" y="96" width="140" height="6" rx="3"/><rect class="line-soft" x="82" y="108" width="76" height="6" rx="3"/>
+      <rect class="accentbox" x="74" y="122" width="192" height="22" rx="5"/>
+      <rect class="fill-accent" x="84" y="130" width="120" height="6" rx="3"/>
+      <g transform="translate(170 172)">
+        <rect class="accentbox" x="-38" y="-11" width="76" height="22" rx="11"/>
+        <text class="label-accent" x="0" y="4" font-size="11" text-anchor="middle">다음 →</text>
+      </g>
     </g>
     <!-- 라벨: 창 바깥(카드 위) -->
     <text class="label" x="178" y="230" font-size="14" text-anchor="middle">오프셋 페이징</text>
     <text class="label" x="542" y="230" font-size="14" text-anchor="middle">커서 페이징</text>
   </svg>
-  <figcaption>오프셋 페이징 &nbsp;·&nbsp; 커서 페이징</figcaption>
 </figure>
 
 앞에서는 스크롤과 페이징으로 설명했지만, 기술적인 관점에서 둘을 **커서 페이징**과 **오프셋 페이징**으로 칭할 수 있다.
