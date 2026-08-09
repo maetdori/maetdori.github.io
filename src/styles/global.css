@@ -170,7 +170,8 @@ img { max-width: 100%; }
 .art-back { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
 .art-back:hover { color: var(--accent); text-decoration: none; }
 .art-hero .eyebrow { display: block; margin-top: 26px; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; text-transform: lowercase; }
-.art-hero h1 { font-size: clamp(1.8rem, 4.4vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.16; margin: 12px 0 0; }
+/* font-size는 레이아웃([...slug].astro)에서 제목 길이에 맞춰 인라인으로 결정 — 아래는 fallback */
+.art-hero h1 { font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin: 12px 0 0; }
 .art-hero .byline { margin: 20px 0 0; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 0.84rem; color: var(--muted); font-family: var(--mono); }
 .art-hero .avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #241a0e; display: grid; place-items: center; font-weight: 800; font-size: 0.8rem; font-family: var(--font); }
 .art-hero .tags { margin: 18px 0 0; display: flex; gap: 6px; flex-wrap: wrap; }
@@ -178,7 +179,7 @@ img { max-width: 100%; }
 /* ─────────────  Prose (article body)  ───────────── */
 .prose { max-width: var(--prose); margin: 0 auto; padding: 8px 24px 80px; }
 .prose > * + * { margin-top: 22px; }
-.prose p { font-size: 1.04rem; }
+.prose p { font-size: 1.09rem; }
 .prose h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-top: 52px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .prose h3 { font-size: 1.18rem; font-weight: 700; margin-top: 38px; }
 /* 제목 부제 (하이픈 대신 회색 서브라인) */
@@ -189,21 +190,13 @@ img { max-width: 100%; }
 .prose ul, .prose ol { padding-left: 1.3em; }
 .prose li { margin: 8px 0; }
 .prose li::marker { color: var(--accent); }
-.prose img { display: block; margin: 6px auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+.prose img { display: block; margin: 6px auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: 0 6px 22px rgba(60, 40, 20, 0.13), 0 2px 6px rgba(60, 40, 20, 0.07); }
+:root[data-theme="dark"] .prose img { box-shadow: 0 8px 26px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.38); }
 .prose figure { margin: 30px 0; }
 .prose figcaption { font-size: 0.82rem; color: var(--faint); text-align: center; font-family: var(--mono); margin-top: 10px; }
 
-/* 래스터 이미지(주로 게임편 픽셀아트/스크린)는 라이트 매트 프레임에 얹어
-   다크모드에서도 "의도된 패널"로 보이게 한다. figmock(SVG)에는 미적용. */
-.prose figure:not(.figmock):not(.figplain) {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 14px;
-  box-shadow: var(--shadow);
-}
-.prose figure:not(.figmock):not(.figplain) img { display: block; margin: 0 auto; border-radius: 8px; }
-:root[data-theme="dark"] .prose figure:not(.figmock):not(.figplain) { background: #efe9dd; border-color: #d8d0c0; }
+/* 단일 래스터 이미지는 바깥 매트 상자 없이 이미지만 (합의된 규칙). 이미지 자체의
+   얇은 테두리·라운드는 .prose img 에서 부여. figmock/figplain(SVG)은 각자 스타일. */
 
 /* highlight — 시스템 accent-soft (노션의 yellow_bg 대체) */
 .prose mark, .prose .hl { background: var(--accent-soft); color: var(--accent-strong); padding: 0 4px; border-radius: 4px; font-weight: 600; }
@@ -253,7 +246,7 @@ img { max-width: 100%; }
 
 /* table */
 .prose .table-wrap { overflow-x: auto; }
-.prose table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.prose table { border-collapse: collapse; width: auto; max-width: 100%; font-size: 0.92rem; }
 .prose th, .prose td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
 .prose th { background: var(--surface-2); font-weight: 700; }
 .prose td { background: var(--surface); }
@@ -262,7 +255,7 @@ img { max-width: 100%; }
    래스터 이미지를 대체하는 테마 대응 벡터 일러스트. Image #3(목업)의
    크림 카드 + 플랫 브라우저 목업 스타일을 그대로 재현한다. */
 .prose figure.figmock {
-  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 26px;
@@ -291,6 +284,7 @@ img { max-width: 100%; }
 .mock .fill-accent { fill: var(--accent); }
 .mock .fill-soft { fill: var(--accent-soft); }
 .mock .fill-surf2 { fill: var(--surface-2); }
+.mock image { image-rendering: pixelated; }  /* 픽셀아트 아이콘을 SVG 안에서 또렷하게 */
 
 /* two-column blocks (노션 columns 재현) */
 .cols { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: center; }
@@ -310,6 +304,42 @@ img { max-width: 100%; }
 /* ─────────────  단일 이미지 figure (그라데이션 카드 없음)  ───────────── */
 .prose figure.figplain { margin: 34px 0; }
 .prose figure.figplain svg { display: block; width: 100%; height: auto; }
+
+/* 픽셀 오브젝트 갤러리 (직접 만든 스프라이트 전시) */
+.objgrid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+@media (max-width: 560px) { .objgrid { grid-template-columns: repeat(4, 1fr); } }
+.objgrid .cell {
+  aspect-ratio: 1; display: grid; place-items: center; padding: 10px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(60, 40, 20, 0.05);
+}
+:root[data-theme="dark"] .objgrid .cell { background: #efe9dd; border-color: #d8d0c0; }
+.objgrid img {
+  max-width: 70%; max-height: 70%; width: auto; height: auto;
+  object-fit: contain; image-rendering: pixelated;
+  margin: 0; border: 0; border-radius: 0; box-shadow: none;
+}
+
+/* 픽셀 오브젝트가 한 방향으로 흐르는 행 (마퀴) — 카드는 figmock과 동일 그라데이션, 캡션은 카드 밖 */
+.objflow {
+  overflow: hidden; padding: 24px 0;
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+
+/* figmock와 동일한 카드 박스 (figplain 안에서 써서 캡션을 카드 밖에 두기 위함) */
+.mockcard {
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 26px; box-shadow: var(--shadow);
+}
+.objflow .track { display: flex; width: max-content; align-items: center; animation: objflow-run 20s linear infinite; }
+.objflow .track img {
+  width: 58px; height: 58px; margin: 0 46px 0 0; flex: none;
+  object-fit: contain; image-rendering: pixelated; display: block;
+  border: 0; border-radius: 0; box-shadow: none;
+}
+@keyframes objflow-run { to { transform: translateX(-50%); } }
 
 /* 리스트를 바로 앞 문단(소제목)에 붙여 가독성 향상 */
 .prose p + ul, .prose p + ol { margin-top: 12px; }

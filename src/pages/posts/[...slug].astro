@@ -16,6 +16,14 @@ const { Content, headings } = await post.render();
 const d = post.data;
 // 본문 h2/h3만 목차로 (Astro가 heading에 자동 부여한 slug 사용)
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+// 제목 길이로 h1 크기 동적 결정 — 짧으면 크게(최대 2.6rem), 길면 한 줄에 맞게 축소.
+// 전각·ASCII·공백 가중치. (주의: Astro frontmatter엔 부등호 문자를 쓰지 말 것 — JSX로 오인됨)
+const titleWide = (d.title.match(/[^\x00-\x7f]/g) || []).length;
+const titleSpaces = (d.title.match(/\s/g) || []).length;
+const titleNarrow = d.title.length - titleWide - titleSpaces;
+const titleUnits = titleWide * 0.95 + titleNarrow * 0.5 + titleSpaces * 0.32;
+const titleMaxPx = Math.max(30, Math.min(41.6, 640 / titleUnits));
+const h1Style = `font-size: clamp(1.5rem, 6.5vw, ${titleMaxPx.toFixed(1)}px)`;
 ---
 
 <Base title={`${d.title} — maetdori.log`} description={d.description} article>
@@ -24,6 +32,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
       <a class="nav-brand" href="/">maetdori<span class="hl">.log</span></a>
       <div class="nav-links">
         <a href="/">글</a>
+        <a href="/projects/">프로젝트</a>
         <a href="https://github.com/maetdori" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
@@ -33,7 +42,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
     <header class="art-hero">
       <a class="art-back" href="/">← 글 목록</a>
       <span class="eyebrow">{d.category}</span>
-      <h1>{d.title}</h1>
+      <h1 style={h1Style}>{d.title}</h1>
       <div class="byline">
         <span>{d.date}</span>
       </div>

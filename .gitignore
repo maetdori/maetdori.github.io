@@ -9,3 +9,6 @@ _excluded-images/
 
 # 다음 세션 이어가기 노트 (로컬 전용)
 HANDOFF.md
+
+# 로컬 전용 핸드오프 스크립트
+_handoff-scripts/
