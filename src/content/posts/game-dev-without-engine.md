@@ -5,7 +5,7 @@ date: '2024.07.02'
 pubDate: 2024-07-02
 category: Side Project
 tags: [side-project, game, react, spring]
-thumb: /posts/game-dev-without-engine/img-11.png
+thumb: /posts/game-dev-without-engine/card.png
 readingTime: 7 min read
 ---
 

@@ -155,14 +155,15 @@ img { max-width: 100%; }
 .writing-card:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--accent); }
 .writing-card-thumb {
   display: block; height: 150px; padding: 10px;
-  background: linear-gradient(135deg, var(--accent-soft), var(--surface));
+  background: #fbecd6;
   border-bottom: 1px solid var(--border);
 }
+:root[data-theme="dark"] .writing-card-thumb { background: #3c3f41; }
 .writing-card-thumb img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 .writing-card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
 .writing-card-date { font-family: var(--mono); font-size: 0.76rem; font-weight: 700; color: var(--accent); }
 .writing-card-title { font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
-.writing-card-tags { margin-top: 4px; display: flex; gap: 6px; flex-wrap: wrap; }
+.writing-card-tags { display: none; }
 .wt { font-size: 0.68rem; font-family: var(--mono); color: var(--muted); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; }
 
 /* ─────────────  Article header  ───────────── */
