@@ -51,7 +51,7 @@ const since = Math.min(...years);
                 <span class="writing-card-date">{post.data.date}</span>
                 <span class="writing-card-title">{post.data.title}</span>
                 <span class="writing-card-tags">
-                  {post.data.tags.map((t) => (
+                  {post.data.tags.slice(0, 2).map((t) => (
                     <span class="wt">{t}</span>
                   ))}
                 </span>
