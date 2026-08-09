@@ -16,6 +16,13 @@ const { Content, headings } = await post.render();
 const d = post.data;
 // 본문 h2/h3만 목차로 (Astro가 heading에 자동 부여한 slug 사용)
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+// 이전/다음 글 — 발행일 오름차순 기준. prev = 더 오래된 글, next = 더 최신 글.
+const ordered = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+const here = ordered.findIndex((p) => p.slug === post.slug);
+const prevPost = ordered[here - 1] ?? null;
+const nextPost = ordered[here + 1] ?? null;
 // 제목 길이로 h1 크기 동적 결정 — 짧으면 크게(최대 2.6rem), 길면 한 줄에 맞게 축소.
 // 전각·ASCII·공백 가중치. (주의: Astro frontmatter엔 부등호 문자를 쓰지 말 것 — JSX로 오인됨)
 const titleWide = (d.title.match(/[^\x00-\x7f]/g) || []).length;
@@ -63,6 +70,25 @@ const h1Style = `font-size: clamp(1.5rem, 6.5vw, ${titleMaxPx.toFixed(1)}px)`;
           </a>
         ))}
       </aside>
+    )
+  }
+
+  {
+    (prevPost || nextPost) && (
+      <nav class="post-nav" aria-label="다른 글로 이동">
+        {prevPost && (
+          <a class="pnav prev" href={`/posts/${prevPost.slug}/`}>
+            <span class="pnav-dir">← 이전 글</span>
+            <span class="pnav-title">{prevPost.data.title}</span>
+          </a>
+        )}
+        {nextPost && (
+          <a class="pnav next" href={`/posts/${nextPost.slug}/`}>
+            <span class="pnav-dir">다음 글 →</span>
+            <span class="pnav-title">{nextPost.data.title}</span>
+          </a>
+        )}
+      </nav>
     )
   }
 

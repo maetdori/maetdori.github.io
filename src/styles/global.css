@@ -294,7 +294,17 @@ img { max-width: 100%; }
 .prose hr { border: 0; border-top: 1px solid var(--border); margin: 40px 0; }
 
 /* post nav (prev/next) + footer */
-.post-foot { max-width: var(--prose); margin: 0 auto; padding: 0 24px 40px; }
+/* 이전/다음 글 내비게이션 (카드 행) */
+.post-nav { max-width: var(--prose); margin: 56px auto 0; padding: 0 24px; display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+.post-nav .pnav { display: flex; flex-direction: column; gap: 6px; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 18px; box-shadow: var(--shadow); color: var(--text); transition: transform 0.12s, border-color 0.12s; }
+.post-nav .pnav:hover { transform: translateY(-2px); border-color: var(--accent); text-decoration: none; }
+.post-nav .pnav.prev { grid-column: 1; }
+.post-nav .pnav.next { grid-column: 2; text-align: right; align-items: flex-end; }
+.post-nav .pnav-dir { font-family: var(--mono); font-size: 0.76rem; font-weight: 700; color: var(--accent); }
+.post-nav .pnav-title { font-size: 0.98rem; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; }
+@media (max-width: 560px) { .post-nav { grid-template-columns: 1fr; } .post-nav .pnav.prev, .post-nav .pnav.next { grid-column: 1; text-align: left; align-items: flex-start; } }
+
+.post-foot { max-width: var(--prose); margin: 0 auto; padding: 22px 24px 40px; text-align: center; }
 .post-foot .back-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.86rem; color: var(--muted); }
 .post-foot .back-link:hover { color: var(--accent); text-decoration: none; }
 
