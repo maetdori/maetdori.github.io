@@ -182,7 +182,7 @@ img { max-width: 100%; }
 .prose h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; margin-top: 52px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .prose h3 { font-size: 1.18rem; font-weight: 700; margin-top: 38px; }
 /* 제목 부제 (하이픈 대신 회색 서브라인) */
-.prose .subtitle { margin-top: 5px; font-size: 1rem; font-weight: 500; color: var(--muted); letter-spacing: -0.01em; }
+.prose .subtitle { margin-top: 5px; font-size: 1rem; font-weight: 600; color: var(--faint); letter-spacing: -0.01em; }
 .prose strong { font-weight: 700; color: var(--text); }
 .prose a { color: var(--accent-strong); background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; }
 .prose a:hover { text-decoration: none; color: var(--accent); }
