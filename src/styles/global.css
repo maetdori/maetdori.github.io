@@ -213,6 +213,7 @@ img { max-width: 100%; }
   font-family: var(--mono); font-size: 0.88em;
   background: var(--surface-2); border: 1px solid var(--border);
   border-radius: 5px; padding: 1px 5px;
+  white-space: nowrap;
 }
 .prose pre {
   background: var(--surface-2); border: 1px solid var(--border);
@@ -237,16 +238,13 @@ img { max-width: 100%; }
   box-shadow: var(--shadow);
 }
 .callout .ic {
-  width: 38px; height: 38px; display: grid; place-items: center;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 11px; font-size: 1.1rem; line-height: 1;
-  box-shadow: 0 1px 2px rgba(60, 40, 20, 0.06);
+  width: 38px; height: 38px; display: grid; place-items: start center;
+  font-size: 1.5rem; line-height: 1; padding-top: 1px;
 }
-:root[data-theme="dark"] .callout .ic { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); }
 .callout > div > * + * { margin-top: 10px; }
 .callout p { margin: 0; font-size: 0.96rem; color: var(--text); }
 .callout p:not(:first-child) { color: var(--muted); }
-.callout p strong { color: var(--text); font-weight: 700; }
+.callout p strong { color: var(--accent-strong); font-weight: 700; }
 .callout a { color: var(--accent-strong); }
 
 /* blockquote */
@@ -322,6 +320,17 @@ img { max-width: 100%; }
 .callout li { margin: 6px 0; font-size: 0.92rem; color: var(--text); line-height: 1.5; }
 .callout li::marker { color: var(--accent); }
 .refsrc { color: var(--faint); font-size: 0.78rem; font-family: var(--mono); margin-left: 3px; }
+
+/* ─────────────  참고 자료 (레퍼런스 전용 · 헤어라인 리스트)  ───────────── */
+.prose .refs { margin: 46px 0 0; border-top: 2px solid color-mix(in srgb, var(--accent) 40%, var(--border)); padding-top: 16px; }
+.prose .refs .refs-lbl { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-strong); font-weight: 700; margin: 0; }
+.prose .refs ul { list-style: none; margin: 12px 0 0; padding: 0; }
+.prose .refs li { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; padding: 12px 0; margin: 0; border-bottom: 1px solid var(--border); }
+.prose .refs li:last-child { border-bottom: 0; padding-bottom: 0; }
+.prose .refs a { color: var(--text); font-size: 0.94rem; text-decoration: none; background: none; transition: color 0.15s; }
+.prose .refs a:hover { color: var(--accent); }
+.prose .refs .dom { font-family: var(--mono); font-size: 0.76rem; color: var(--faint); white-space: nowrap; }
+.prose .refs .ext { color: var(--accent); font-weight: 700; }
 .prose .fnote { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-top: 14px; padding-left: 14px; border-left: 2px solid var(--border); }
 .prose .fnote strong { color: var(--text); }
 

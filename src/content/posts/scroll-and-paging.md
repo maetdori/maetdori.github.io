@@ -147,7 +147,7 @@ readingTime: 9 min read
 <p>UX에서 “페이징 vs 무한 스크롤”로 나눴던 것을 구현으로 내려오면 <strong>오프셋 페이징(offset)</strong>과 <strong>커서 페이징(cursor)</strong>이라고 부른다.</p>
 <ul>
   <li><strong>오프셋 페이징</strong> — “앞의 N개를 건너뛰고 그다음 M개를 달라.” 페이지 번호를 offset으로 환산해 조회한다. 5페이지를 보려면 앞 4페이지 분량을 건너뛰는 식이다.</li>
-  <li><strong>커서 페이징</strong> — “이 항목 <em>다음부터</em> M개를 달라.” 마지막으로 읽은 항목을 커서(포인터)로 삼아 그 뒤부터 이어 읽는다.</li>
+  <li><strong>커서 페이징</strong> — “이 항목 ‘다음부터’ M개를 달라.” 마지막으로 읽은 항목을 커서(포인터)로 삼아 그 뒤부터 이어 읽는다.</li>
 </ul>
 
 <figure class="figmock">
@@ -189,8 +189,8 @@ readingTime: 9 min read
 <p>편리하지만, 이 방식에는 두 가지 문제가 있다.</p>
 <p><strong>1. 데이터 중복·누락</strong></p>
 <ul>
-  <li>1페이지를 보는 동안 맨 앞에 3건이 <em>추가</em>되면, 2페이지에서 1페이지의 마지막 3건을 다시 만난다(중복).</li>
-  <li>반대로 앞 3건이 <em>삭제</em>되면, 2페이지에서 봤어야 할 3건을 건너뛴다(누락).</li>
+  <li>1페이지를 보는 동안 맨 앞에 3건이 ‘추가’되면, 2페이지에서 1페이지의 마지막 3건을 다시 만난다(중복).</li>
+  <li>반대로 앞 3건이 ‘삭제’되면, 2페이지에서 봤어야 할 3건을 건너뛴다(누락).</li>
   <li>그래서 생성·삭제가 잦은 SNS 피드 같은 서비스에는 잘 맞지 않는다.</li>
 </ul>
 <p><strong>2. offset 쿼리의 성능</strong></p>
@@ -318,13 +318,10 @@ readingTime: 9 min read
 </ul>
 <p>결국 “어떤 경험을 줄지”가 정해지면 쿼리 전략은 대체로 그 결정을 따라온다. 그 순서만 기억해도 상황에 맞는 선택이 한결 쉬워진다.</p>
 
-<div class="callout">
-  <span class="ic">🔗</span>
-  <div>
-    <p><strong>참고 자료</strong></p>
-    <ul>
-      <li><a href="https://uxplanet.org/ux-infinite-scrolling-vs-pagination-1030d29376f1" target="_blank" rel="noopener">UX: Infinite Scrolling vs. Pagination</a> <span class="refsrc">uxplanet.org</span></li>
-      <li><a href="https://use-the-index-luke.com/sql/partial-results/fetch-next-page" target="_blank" rel="noopener">Use The Index, Luke — Fetch Next Page</a> <span class="refsrc">use-the-index-luke.com</span></li>
-    </ul>
-  </div>
+<div class="refs">
+  <p class="refs-lbl">참고 자료</p>
+  <ul>
+    <li><a href="https://uxplanet.org/ux-infinite-scrolling-vs-pagination-1030d29376f1" target="_blank" rel="noopener">UX: Infinite Scrolling vs. Pagination</a><span class="dom">uxplanet.org <span class="ext">↗</span></span></li>
+    <li><a href="https://use-the-index-luke.com/sql/partial-results/fetch-next-page" target="_blank" rel="noopener">Use The Index, Luke — Fetch Next Page</a><span class="dom">use-the-index-luke.com <span class="ext">↗</span></span></li>
+  </ul>
 </div>
