@@ -155,7 +155,7 @@ img { max-width: 100%; }
 .writing-card:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--accent); }
 .writing-card-thumb {
   display: block; height: 150px; padding: 10px;
-  background: #fbecd6;
+  background: #fbf3e7;
   border-bottom: 1px solid var(--border);
 }
 :root[data-theme="dark"] .writing-card-thumb { background: #3c3f41; }
@@ -256,7 +256,7 @@ img { max-width: 100%; }
    래스터 이미지를 대체하는 테마 대응 벡터 일러스트. Image #3(목업)의
    크림 카드 + 플랫 브라우저 목업 스타일을 그대로 재현한다. */
 .prose figure.figmock {
-  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  background: color-mix(in srgb, var(--accent-soft) 35%, var(--surface));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 26px;
@@ -334,13 +334,13 @@ img { max-width: 100%; }
 /* 픽셀 오브젝트가 한 방향으로 흐르는 행 (마퀴) — 카드는 figmock과 동일 그라데이션, 캡션은 카드 밖 */
 .objflow {
   overflow: hidden; padding: 24px 0;
-  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  background: color-mix(in srgb, var(--accent-soft) 35%, var(--surface));
   border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
 }
 
 /* figmock와 동일한 카드 박스 (figplain 안에서 써서 캡션을 카드 밖에 두기 위함) */
 .mockcard {
-  background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface));
+  background: color-mix(in srgb, var(--accent-soft) 35%, var(--surface));
   border: 1px solid var(--border); border-radius: var(--radius);
   padding: 26px; box-shadow: var(--shadow);
 }
