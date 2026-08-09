@@ -39,8 +39,11 @@ const h1Style = `font-size: clamp(1.5rem, 6.5vw, ${titleMaxPx.toFixed(1)}px)`;
       <a class="nav-brand" href="/">maetdori<span class="hl">.log</span></a>
       <div class="nav-links">
         <a href="/">글</a>
-        <a href="/projects/">프로젝트</a>
         <a href="https://github.com/maetdori" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="theme-btn" class="nav-toggle" type="button" aria-label="테마 전환" title="테마 전환">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19"></path></svg>
+        </button>
       </div>
     </div>
   </nav>
@@ -98,7 +101,7 @@ const h1Style = `font-size: clamp(1.5rem, 6.5vw, ${titleMaxPx.toFixed(1)}px)`;
 
   <footer class="footer">
     <div class="wrap">
-      <p>© {new Date().getFullYear()} 이해인 (maetdori) · Built with Astro</p>
+      <p>© {new Date().getFullYear()} 이해인 (maetdori)</p>
     </div>
   </footer>
 

@@ -51,13 +51,6 @@ const desc = description.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
     </script>
   </head>
   <body>
-    <div class="float-controls">
-      <button id="theme-btn" class="theme-toggle" type="button" aria-label="Toggle theme">
-        <span class="theme-icon-light" aria-hidden="true">☀</span>
-        <span class="theme-icon-dark" aria-hidden="true">☾</span>
-      </button>
-    </div>
-
     <slot />
 
     <script>

@@ -6,38 +6,37 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const years = posts.map((p) => p.data.pubDate.getFullYear());
-const since = Math.min(...years);
+// 사이드 프로젝트. 각 항목은 자체 라이브 페이지로 링크. 새 프로젝트는 여기 추가.
+const projects = [
+  {
+    title: '클로도치 (claudotchi)',
+    description:
+      'AI를 어떻게 쓰는지에 따라 자라는 Claude Code 펫. 컨텍스트 사용량이 곧 수명이라, 상태표시줄의 픽셀 클로드만 봐도 내가 컨텍스트를 얼마나 썼는지 한눈에 보입니다.',
+    eyebrow: 'Claude Code · 플러그인',
+    thumb: '/projects/claudotchi.svg',
+    href: 'https://maetdori.github.io/claudotchi/',
+    external: true,
+  },
+];
 ---
 
-<Base
-  title="maetdori.log — 이해인 기술 블로그"
-  description="백엔드를 파다가 가끔 픽셀도 찍습니다. 오래 붙잡았던 문제와 그때의 기록."
->
+<Base title="maetdori.log">
   <nav class="nav">
     <div class="nav-inner">
       <a class="nav-brand" href="/">maetdori<span class="hl">.log</span></a>
       <div class="nav-links">
         <a href="/" class="active">글</a>
         <a href="https://github.com/maetdori" target="_blank" rel="noopener">GitHub ↗</a>
+        <button id="theme-btn" class="nav-toggle" type="button" aria-label="테마 전환" title="테마 전환">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6 19 19M19 5l-1.4 1.4M6.4 17.6 5 19"></path></svg>
+        </button>
       </div>
     </div>
   </nav>
 
-  <div class="wrap">
-    <header class="mast">
-      <p class="eyebrow">~/writing</p>
-      <h1>오래 붙잡았던 문제와<br />그때의 <span class="hl">기록</span>.</h1>
-      <p class="tagline">백엔드를 파다가 가끔 픽셀도 찍습니다. 이해인(maetdori)의 기술 블로그입니다.</p>
-      <div class="stats">
-        <span><b>{posts.length}</b> posts</span>
-        <span><b>{since}</b> — now</span>
-        <span>Backend · Java · Side Project</span>
-      </div>
-    </header>
-  </div>
-
-  <section class="writing-section">
+  <!-- 상단: 기술 포스트 -->
+  <section class="home-section first">
     <div class="wrap">
       <p class="section-title">Technical Writing</p>
       <div class="writing-grid">
@@ -50,11 +49,6 @@ const since = Math.min(...years);
               <span class="writing-card-body">
                 <span class="writing-card-date">{post.data.date}</span>
                 <span class="writing-card-title">{post.data.title}</span>
-                <span class="writing-card-tags">
-                  {post.data.tags.slice(0, 2).map((t) => (
-                    <span class="wt">{t}</span>
-                  ))}
-                </span>
               </span>
             </a>
           ))
@@ -63,9 +57,35 @@ const since = Math.min(...years);
     </div>
   </section>
 
+  <!-- 하단: 프로젝트 -->
+  <section class="home-section last">
+    <div class="wrap">
+      <p class="section-title">Playground</p>
+      {
+        projects.map((p) => (
+          <a
+            class="project-card"
+            href={p.href}
+            target={p.external ? '_blank' : undefined}
+            rel={p.external ? 'noopener' : undefined}
+          >
+            <span class="project-thumb">
+              {p.thumb && <img src={p.thumb} alt="" loading="lazy" />}
+            </span>
+            <span class="project-body">
+              <span class="project-eyebrow">{p.eyebrow}{p.external ? ' ↗' : ''}</span>
+              <span class="project-title">{p.title}</span>
+              <span class="project-desc">{p.description}</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="wrap">
-      <p>© {new Date().getFullYear()} 이해인 (maetdori) · Built with Astro</p>
+      <p>© {new Date().getFullYear()} 이해인 (maetdori)</p>
     </div>
   </footer>
 </Base>
