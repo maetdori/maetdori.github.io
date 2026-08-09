@@ -4,7 +4,7 @@ description: 무한 스크롤과 페이징을 UX와 기술 두 관점에서 비�
 date: '2022.04.27'
 pubDate: 2022-04-27
 category: Backend · Database
-tags: [backend, database, ux]
+tags: [backend, database, ui·ux]
 thumb: /posts/scroll-and-paging/img-01.png
 readingTime: 9 min read
 ---
